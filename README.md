@@ -27,6 +27,11 @@ We ran a standard regression benchmark (predicting projectile range at unseen ve
 
 ---
 
+## 📂 Repository Structure
+* **`relational_losses.py`**: The drop-in PyTorch module. Copy this file into your project to use `RelationalMSELoss` and `RelationalCrossEntropyLoss`.
+* **`demo_relational_loss.py`**: The local benchmark script. Run this to locally reproduce the 4000x speedup and generate the loss landscape visualizations.
+* **`WHITE_PAPER.md`**: The mathematical foundation and derivation of the Relational Calculus framework.
+
 ## 🛠️ The Practitioner's Recipe: How to use this today
 
 This is a drop-in mathematical replacement for your PyTorch/TensorFlow pipelines. 
