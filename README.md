@@ -4,13 +4,15 @@
 
 [![PyPI version](https://badge.fury.io/py/relational-calculus.svg)](https://pypi.org/project/relational-calculus/)
 ![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=flat&logo=PyTorch&logoColor=white)
+![XGBoost](https://img.shields.io/badge/Engine-Relational_XGBoost-blueviolet)
+![Tabular Data](https://img.shields.io/badge/Domain-CSV_%2F_Tabular_Data-orange)
 ![Scale Invariant](https://img.shields.io/badge/Property-Scale%20Invariant-brightgreen)
 ![Optimizer](https://img.shields.io/badge/Optimizer-Adam_Not_Required-blue)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.19757717-blue.svg)](https://doi.org/10.5281/zenodo.19757717)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1q9yIJpYAHJR1VveZsp4Z90Kh15PC-8o9)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 
-**Keywords:** `Scale-Invariant Loss`, `Zero-Shot Transfer`, `Information Theory`, `Dimensionless Math`, `Machine Learning Optimization`, `PyTorch Custom Loss`, `Exploding Gradient Fix`, `VRAM Reduction`.
+**Keywords:** `Scale-Invariant Loss`, `Zero-Shot Transfer`, `XGBoost`, `Tabular Data`, `Dimensionless Math`, `Machine Learning Optimization`, `PyTorch Custom Loss`, `Exploding Gradient Fix`, `VRAM Reduction`.
 
 ---
 
