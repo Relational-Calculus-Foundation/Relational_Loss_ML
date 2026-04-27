@@ -94,12 +94,12 @@ We demonstrated that dimensionless relational kinematics mathematically eliminat
 ---
 
 ## Data and Code Availability
-The experimental pipeline is open-sourced at: `use_examples/5_high_energy_physics/cern_zero_shot.py` in the official GitHub repository.
+The experimental pipeline is open-sourced at: `https://github.com/massimilianoconcas0-del/Relational_Loss_ML/edit/main/use_examples/hep/xr_zero_shot.py` in the official GitHub repository.
 
 ---
 
 ## References
-[1] [Author Name]. (2024). *The Relational Calculus Framework*. Zenodo. doi:10.5281/zenodo.19757717.  
+[1] [Massimiliano Concas]. (2026). *The Relational Calculus Framework*. Zenodo. doi:10.5281/zenodo.19757717.  
 [2] Kasieczka, G., et al. (2019). *The Machine Learning Landscape of Top Taggers*. SciPost Phys. 7(1), 014.  
 [3] Chen, T., & Guestrin, C. (2016). *XGBoost: A Scalable Tree Boosting System*. Proc. 22nd ACM SIGKDD.  
 [4] Qu, H., & Gouskos, L. (2020). *ParticleNet: Jet Tagging via Particle Clouds*. Phys. Rev. D, 101(5).  
