@@ -9,6 +9,7 @@
 ![Scale Invariant](https://img.shields.io/badge/Property-Scale%20Invariant-brightgreen)
 ![Optimizer](https://img.shields.io/badge/Optimizer-Adam_Not_Required-blue)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.19757717-blue.svg)](https://doi.org/10.5281/zenodo.19757717)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.19827952-blue.svg)](https://doi.org/10.5281/zenodo.19827952)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1q9yIJpYAHJR1VveZsp4Z90Kh15PC-8o9)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 
