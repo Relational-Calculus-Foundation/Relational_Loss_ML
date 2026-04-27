@@ -1,4 +1,8 @@
 # Scale-Invariant Jet Tagging via Relational Calculus: Zero-Shot Transfer Across Collision Energies
+**Version:** 1.0
+**Status:** Complete Draft
+**Author:** Massimiliano Concas - Ciber Fabbrica
+**Date:** April-27-2026
 
 **Abstract**
 Deep learning models in High Energy Physics (HEP) exhibit severe performance degradation when applied to out-of-distribution kinematic regimes, such as varying center-of-mass energies ($\sqrt{s}$). Traditional data normalization techniques, like Z-score standardization, rigidly anchor machine learning algorithms to absolute energy scales, rendering them highly susceptible to data drift. In this paper, we present a domain-specific application of the Relational Calculus Framework (Zenodo, doi:10.5281/zenodo.19757717) to directly address this vulnerability. By dynamically mapping the absolute four-momenta of constituent particles into a Lorentz-invariant phase space—utilizing Jet Invariant Mass and relational transverse momentum ($p_T$) fractions—we force the algorithm to learn pure decay geometry rather than scale-dependent variables. 
