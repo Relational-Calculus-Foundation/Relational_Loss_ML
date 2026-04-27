@@ -111,6 +111,24 @@ Head over to the [`use_examples/`](./use_examples) directory to explore the self
 
 ---
 
+## 🚀 The Multi-Domain Strategy
+
+This repository demonstrates that the **Relational Calculus** paradigm is a universal framework, applicable across entirely different AI architectures. We approach machine learning on two distinct fronts:
+
+### 1. The Heavy Artillery: Relational XGBoost (Tabular Mastery)
+For classic business problems (structured data, CSVs, Excel files), deep neural networks are often overkill. In the `use_examples/tabular_data_xgboost/` directory, we demonstrate how combining Relational Normalization with XGBoost creates a ruthlessly efficient engine. 
+By discarding absolute math (Z-scores, means) and mapping data purely by its proportional capacity, Relational XGBoost shatters baseline benchmarks (achieving **~0.128 Kaggle Log RMSE** on Ames Housing) with zero hyperparameter tuning anxiety. **This solves 90% of standard structured data problems.**
+
+### 2. The Theoretical Frontier: Relational Transformers (Deep Learning)
+For complex, multi-modal, or highly non-linear spaces, we deploy the pure **Relational Transformer**. 
+Here, we strip away Adam optimizers, weight decay, and learning rate schedulers. We replace them with a 100% physically grounded stack:
+* **RelationalMSELoss:** A dimensionless loss function.
+* **RelationalSGD:** An optimizer governed by momentum and structural capacity.
+* **Topological Learning Rate ($R = I \cdot E / T$):** An auto-calculating learning rate driven by the information density and roughness of the dataset itself.
+
+While XGBoost wins the efficiency war on tabular data, the Relational Transformer proves that our mathematical framework can tame the most chaotic and complex architectures in modern AI.
+
+---
 ## 🚀 Getting Started
 
 The AI industry is currently building bigger and bigger engines to fight gravity. We aren't building a bigger engine. We found a way to remove air resistance.
