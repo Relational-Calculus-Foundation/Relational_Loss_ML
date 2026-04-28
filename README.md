@@ -11,8 +11,9 @@
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.19757717-blue.svg)](https://doi.org/10.5281/zenodo.19757717)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.19827952-blue.svg)](https://doi.org/10.5281/zenodo.19827952)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.19841529-blue.svg)](https://doi.org/10.5281/zenodo.19841529)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.19853862-blue.svg)](https://doi.org/10.5281/zenodo.19853862)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1q9yIJpYAHJR1VveZsp4Z90Kh15PC-8o9)
-![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)
 
 **Keywords:** `Scale-Invariant Loss`, `Zero-Shot Transfer`, `XGBoost`, `Tabular Data`, `Dimensionless Math`, `Machine Learning Optimization`, `PyTorch Custom Loss`, `Exploding Gradient Fix`, `VRAM Reduction`.
 
