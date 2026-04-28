@@ -128,7 +128,7 @@ For complex, multi-modal, or highly non-linear spaces, we deploy the pure **Rela
 Here, we strip away Adam optimizers, weight decay, and learning rate schedulers. We replace them with a 100% physically grounded stack:
 * **RelationalMSELoss:** A dimensionless loss function.
 * **RelationalSGD:** An optimizer governed by momentum and structural capacity.
-* **Topological Learning Rate ($R = I \cdot E / T$):** An auto-calculating learning rate driven by the information density and roughness of the dataset itself.
+
 
 While XGBoost wins the efficiency war on tabular data, the Relational Transformer proves that our mathematical framework can tame the most chaotic and complex architectures in modern AI.
 
