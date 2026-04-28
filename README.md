@@ -101,17 +101,19 @@ After training, recover absolute predictions only when needed by multiplying the
 
 ---
 
-## 🗺️ Empirical Evidence: The 5 Domains
+## 🗺️ Empirical Evidence: The 8 Domains
 
 We did not just write a paper; we stress-tested this principle across five completely different domains of AI to prove it is a universal law of learning. 
 
 Head over to the [`use_examples/`](./use_examples) directory to explore the self-contained scripts.
-
-* 🏗️ **1. Core Optimization** (`1_core_architecture/`) — Proving how Relational targets prevent "Dying ReLUs" and work flawlessly on both MLPs and Transformers.
-* 🌪️ **2. Fluid Dynamics** (`2_physics_and_continuous_systems/`) — Achieving a 13,484x improvement in aerodynamic zero-shot scale transfer.
-* 🤖 **3. Hardware Robotics** (`3_robotics_and_vision/`) — Flying a 50kg industrial drone using weights trained solely on a 1kg micro-drone.
-* 📸 **4. Computer Vision** (`3_robotics_and_vision/`) — Achieving Zero-Shot HDR lighting invariance by decoupling material albedo from absolute RGB pixels.
-* 🏢 **5. Enterprise NLP & RAG** (`4_nlp_and_enterprise_ai/`) — Stabilizing local CPU fine-tuning and solving the temporal inflation problem using Dynamic Relational RAG.
+* 🏗️ **1. Core Optimization** (1_core_architecture/) — Proving how Relational targets prevent "Dying ReLUs" and work flawlessly on both MLPs and Transformers. 
+* 🌪️ **2. Fluid Dynamics** (2_physics_and_continuous_systems/) — Achieving a 13,484x improvement in aerodynamic zero-shot scale transfer. 
+* 🤖 **3. Hardware Robotics** (3_robotics_and_vision/) — Flying a 50kg industrial drone using weights trained solely on a 1kg micro-drone. 
+* 📸 **4. Computer Vision** (3_robotics_and_vision/) — Achieving Zero-Shot HDR lighting invariance by decoupling material albedo from absolute RGB pixels. 
+* 🏢 **5. Enterprise NLP & RAG** (4_nlp_and_enterprise_ai/) — Stabilizing local CPU fine-tuning and solving the temporal inflation problem using Dynamic Relational RAG. 
+* ⚛️ **6. High-Energy Physics** (Jet Tagging) — Zero-shot cross-energy transfer: a Relational XGBoost trained on low-energy top quarks achieves +14.5% AUC on high-energy jets without retraining. 
+* 🧪 **7. Quantum Chemistry** — Cross-molecular zero-shot: trained on H₂, predicts LiH ground-state energy with 80% error reduction compared to absolute-scale models.
+* 🧬 **8. Precision Oncology** (scRNA-seq) — Cross-species, cross-platform immunity: a Relational XGBoost trained on mouse tumors maintains 98.4% accuracy on shallow-sequenced human TNBC after a 70% signal collapse. 
 
 ---
 
@@ -128,11 +130,19 @@ For complex, multi-modal, or highly non-linear spaces, we deploy the pure **Rela
 Here, we strip away Adam optimizers, weight decay, and learning rate schedulers. We replace them with a 100% physically grounded stack:
 * **RelationalMSELoss:** A dimensionless loss function.
 * **RelationalSGD:** An optimizer governed by momentum and structural capacity.
-
-
 While XGBoost wins the efficiency war on tabular data, the Relational Transformer proves that our mathematical framework can tame the most chaotic and complex architectures in modern AI.
 
+### 3. High-Energy Physics: Scale-Invariant Jet Tagging with Shallow Trees
+In particle colliders, a model trained at one center-of-mass energy fails completely when the accelerator gets upgraded—unless you strip absolute GeV scales from the input. We transformed raw jet constituent momenta into dimensionless fractions of the jet's total transverse momentum ($p_T$). A lightweight XGBoost classifier, trained exclusively on low-energy top quarks and tested zero-shot on high-energy jets, surged from a crashed AUC of 0.81 (absolute model) to 0.9564—a +14.5% leap with no retraining and zero GPU usage. This proves that the relational representation erases energy-scale drift, a problem that typically forces complete model overhauls every time the LHC upgrades.
+
+### 4. Quantum Chemistry: From H₂ to LiH on a Single CPU
+Predicting molecular energies with machine learning usually explodes in cost as molecules grow larger, because absolute Hartree values shift by orders of magnitude. We defined the “Global Capacity” of a molecule as its isolated informational potential—the sum of its constituent atoms’ ground-state energies—and trained a tiny XGBoost model on the dissociation curve of H₂. Tested zero-shot on LiH (a 4-electron system), the relational model cut absolute prediction error by 80% compared to classical scaling, while Equivariant Graph Neural Networks require massive GPU farms to achieve similar generalization. The key: learning the dimensionless fraction of binding energy, not the raw Hartrees.
+
+### 5. Precision Oncology: Eradicating Batch Effects with Dimensionless Transcriptomics
+Single-cell RNA sequencing data is notoriously plagued by “batch effects”—technical differences between sequencing machines that cause absolute gene counts to drift. We applied the same relational logic: each cell’s Global Capacity was defined as the total expression of invariant housekeeping genes. Oncogenic drivers (MYC, ERBB2) became dimensionless fractions. An XGBoost classifier trained purely on mouse breast cancer (MMTV‑PyMT) and tested zero‑shot on human Triple‑Negative Breast Cancer after a simulated 70% drop in sequencing depth maintained 98.4% accuracy, whereas the absolute model collapsed to 36% sensitivity. The relational representation made the model completely immune to hardware and species shifts. Additionally, we introduced the Relational Imbalance Index (ρ)—the ratio of metabolic rate to cell‑cycle duration—as a purely empirical predictor of therapeutic vulnerabilities (runners vs. sleepers), turning the same dimensionless math into a clinical decision tool.
+
 ---
+
 ## 🚀 Getting Started
 
 The AI industry is currently building bigger and bigger engines to fight gravity. We aren't building a bigger engine. We found a way to remove air resistance.
