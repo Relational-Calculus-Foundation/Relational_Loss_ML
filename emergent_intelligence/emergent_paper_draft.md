@@ -47,7 +47,6 @@ Section 2 presents the prime harmonic proof. Section 3 presents the chess engine
 ---
 
 ## 2. Pillar 1: Deterministic Order in Prime Distributions
-*(The content of this section is drawn from the prime2.pdf document, rewritten to serve as the first empirical pillar. The key findings, the 99% confirmation rate, and the modular analysis of the sexy prime bifurcation are preserved, but the language is tightened and the claims are calibrated to the paper’s enablement objective.)*
 
 ### 2.1. The Randomness Assumption
 For centuries, the local distribution of primes has been modeled probabilistically. Cramér’s 1936 random model treats each integer as having an independent $1/\ln n$ chance of being prime. This heuristic works well for macroscopic statistics but says nothing about the deterministic architecture that actually governs prime gaps.
@@ -74,7 +73,6 @@ If the primes were truly random, testing 16 offsets near $10^6$ would yield a su
 ---
 
 ## 3. Pillar 2: Emergent Strategy Without Knowledge
-*(The chess engine content is reframed as a dynamic-system proof of the Two-Phase Theory. Grand claims of “proof” are replaced with “demonstration” and “evidence.” The evaluation is acknowledged as a depth-1 heuristic. The key value—emergent strategic behavior from a single relational metric—is preserved and clarified.)*
 
 ### 3.1. Stripping Chess of Knowledge
 The Geometric Supremacy Engine is a Python chess player with:
@@ -101,7 +99,6 @@ The chess engine is not presented as a replacement for modern chess AI; it is a 
 ---
 
 ## 4. Pillar 3: Zero-Shot Scale Invariance in Jet Tagging
-*(The HEP content is the quantitative linchpin. It is presented as the paper’s primary empirical contribution because it provides a hard, reproducible metric: +14.5% AUC. The connection to the Relational Calculus vocabulary is made explicit.)*
 
 ### 4.1. The Problem: Brittleness Across Energy Scales
 Deep learning models for jet tagging are typically trained on absolute transverse momentum ($p_T$) values. When the center-of-mass energy $\sqrt{s}$ changes, these absolute values shift, and the model’s decision boundaries become invalid. Standard Z-score normalization freezes the training-set statistics into the model, exacerbating the drift.
@@ -130,7 +127,6 @@ This result is the paper’s anchor. It shows that when the architect performs P
 ---
 
 ## 5. The Relational Calculus Framework
-*(This section distills the relational_calculus.pdf and the introduction paper into a concise, domain-agnostic protocol. The historical “breadcrumbs” and lengthy philosophical defenses are omitted in favor of a clean axiomatic presentation.)*
 
 ### 5.1. The Three Axioms
 *   **Axiom I: The Ontological Anchor (North Star Mandate).** Every system has an intrinsic, theoretical maximum. The denominator in any relational analysis must be this limit, not a convenient coordinate. For a projectile, it is $v^2/g$; for a jet, it is $p_{T,jet}$; for a battery, it is $E_{max}$.
@@ -146,7 +142,6 @@ Continuous Calculus explores a landscape point by point. Relational Calculus rev
 ---
 
 ## 6. Deconstructing Abstract-CoT Through the Relational Lens
-*(The critique of Abstract-CoT is rewritten as a respectful engineering analysis. The IBM team’s work is credited as an accidental but brilliant demonstration of the Two-Phase Theory. The three flaws are framed as opportunities for the relational upgrade, not as fatal errors.)*
 
 ### 6.1. What Abstract-CoT Gets Right
 Ramji et al. replace long, natural-language Chain-of-Thought with short sequences of abstract tokens from a reserved vocabulary of 64 symbols. They enforce a hard cap of 128 tokens on the reasoning trace. The result is an 11.6× token reduction while preserving model performance across mathematical, instruction-following, and multi-hop reasoning benchmarks.
@@ -234,15 +229,613 @@ The era of brute-force scale is a temporary detour. It was made necessary by a h
 
 ---
 
-## Appendix A. Nuclear Reactor Computational Proof
-*(The full Python script and analysis from the relational calculus paper appendix are referenced here as a concrete demonstration of the 92% cost reduction in a CFD-scale simulation.)*
+## Appendix A: Emergent Checker: Geometric Supremacy Engine[cite: 1]
 
-A Pressurized Water Reactor cooling design requires predicting the Nusselt number across a range of flow rates. A full Continuous Calculus approach runs 100 CFD simulations. The Relational Calculus approach identifies the conductive heat-transfer baseline as the North Star and fits the dimensionless power law $Nu = C \cdot Re^m \cdot Pr^n$ from just 8 strategic simulations. The fitted correlation predicts the remaining 92 conditions with a mean error of 1.2%, achieving **92% cost reduction** with no loss of accuracy. The complete Python implementation is available in the supplementary material.
+**Ciber-Fabbrica Research**[cite: 1]
+
+### Game Results
+
+**=== Geometric Supremacy Engine with 3-Tier Threat Reflex ===**[cite: 1]  
+Evaluation: `actual * potential + 0.5 * king safety`[cite: 1]  
+Depth-1 minimax. Enter moves in UCI format (e.g., `e2e4`).[cite: 1]
+
+**• Engine plays: `e2e4`** | Positional supremacy (White - Black): 189.50[cite: 1]
+```text
+r n b q k b n r
+P P P P P P P P
+. . . . . . . .
+. . . . P . . .
+. . . . . . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R
+```
+**Your move:** `e7e5` | Positional supremacy (White - Black): 0.00[cite: 1]
+
+**• Engine plays: `d1f3`** | Positional supremacy (White - Black): 268.50[cite: 1]
+```text
+r n b q k b n r
+P P P P . P P P
+. . . . . . . .
+. . . . p . . .
+. . . . P . . .
+. . . . . Q . .
+P P P P . P P P
+R N B . K B N R
+```
+**Your move:** `d8e7` | Positional supremacy (White - Black): 206.50[cite: 1]
+
+**• Engine plays: `f1c4`** | Positional supremacy (White - Black): 254.00[cite: 1]
+```text
+r n b . k b n r
+P P P P q P P P
+. . . . . . . .
+. . . . p . . .
+. . B . P . . .
+. . . . . Q . .
+P P P P . P P P
+R N B . K . N R
+```
+**Your move:** `e7e6` | Positional supremacy (White - Black): 82.50[cite: 1]
+
+**• Engine plays: `c4e6`** | Positional supremacy (White - Black): 420.50[cite: 1]
+```text
+r n b . k b n r
+P P P P . P P P
+. . . . B . . .
+. . . . p . . .
+. . . . P . . .
+. . . . . Q . .
+P P P P . P P P
+R N B . K . N R
+```
+**Your move:** `d7e6` | Positional supremacy (White - Black): 298.00[cite: 1]
+
+**• Engine plays: `f3d3`** | Positional supremacy (White - Black): 388.00[cite: 1]
+```text
+r n b . k b n r
+P P P . . P P P
+. . . . p . . .
+. . . . p . . .
+. . . . P . . .
+. . . Q . . . .
+P P P P . P P P
+R N B . K . N R
+```
+**Your move:** `b8a6` | Positional supremacy (White - Black): 349.00[cite: 1]
+
+**• Engine plays: `a2a4`** | Positional supremacy (White - Black): 377.00[cite: 1]
+```text
+r . b . k b n r
+P P P . . P P P
+n . . . p . . .
+. . . . p . . .
+P . . . P . . .
+. . . Q . . . .
+. P P P . P P P
+R N B . K . N R
+```
+**Your move:** `a6c5` | Positional supremacy (White - Black): 441.00[cite: 1]
+
+**• Engine plays: `d3e3`** | Positional supremacy (White - Black): 295.00[cite: 1]
+```text
+r . b . k b n r
+P P P . . P P P
+. . . . p . . .
+. . n . p . . .
+P . . . P . . .
+. . . . Q . . .
+. P P P . P P P
+R N B . K . N R
+```
+**Your move:** `b7b5` | Positional supremacy (White - Black): 261.00[cite: 1]
+
+**• Engine plays: `a4b5`** | Positional supremacy (White - Black): 303.00[cite: 1]
+```text
+r . b . k b n r
+P . P . . P P P
+. . . . p . . .
+. P n . p . . .
+. . . . P . . .
+. . . . Q . . .
+. P P P . P P P
+R N B . K . N R
+```
+**Your move:** `f8e7` | Positional supremacy (White - Black): 259.00[cite: 1]
+
+**• Engine plays: `h2h4`** | Positional supremacy (White - Black): 300.00[cite: 1]
+```text
+r . b . k . n r
+P . P . b P P P
+. . . . p . . .
+. P n . p . . .
+. . . . P . . P
+. . . . Q . . .
+. P P P . P P .
+R N B . K . N R
+```
+**Your move:** `g8h6` | Positional supremacy (White - Black): 239.00[cite: 1]
+
+**• Engine plays: `b2b4`** | Positional supremacy (White - Black): 263.00[cite: 1]
+```text
+r . b . k . . r
+P . P . b P P P
+. . . . p . . n
+. P n . p . . .
+. P . . P . . P
+. . . . Q . . .
+. . P P . P P .
+R N B . K . N R
+```
+**Your move:** `c8b7` | Positional supremacy (White - Black): 230.00[cite: 1]
+
+**• Engine plays: `b4c5`** | Positional supremacy (White - Black): 280.00[cite: 1]
+```text
+r . . . k . . r
+P b P . b P P P
+. . . . p . . n
+. P P . p . . .
+. . . . P . . P
+. . . . Q . . .
+. . P P . P P .
+R N B . K . N R
+```
+**Your move:** `a7a6` | Positional supremacy (White - Black): 265.00[cite: 1]
+
+**• Engine plays: `a1a5`** | Positional supremacy (White - Black): 265.00[cite: 1]
+```text
+r . . . k . . r
+. b P . b P P P
+p . . . p . . n
+R P P . p . . .
+. . . . P . . P
+. . . . Q . . .
+. . P P . P P .
+. N B . K . N R
+```
+**Your move:** `a8d8` | Positional supremacy (White - Black): 217.50[cite: 1]
+
+**• Engine plays: `a5a6`** | Positional supremacy (White - Black): 303.50[cite: 1]
+```text
+. . . r k . . r
+. b P . b P P P
+R . . . p . . n
+. P P . p . . .
+. . . . P . . P
+. . . . Q . . .
+. . P P . P P .
+. N B . K . N R
+```
+**Your move:** `b7a6` | Positional supremacy (White - Black): 175.50[cite: 1]
+
+**• Engine plays: `b5a6`** | Positional supremacy (White - Black): 214.50[cite: 1]
+```text
+. . . r k . . r
+. . P . b P P P
+P . . . p . . n
+. . P . p . . .
+. . . . P . . P
+. . . . Q . . .
+. . P P . P P .
+. N B . K . N R
+```
+**Your move:** `d8d5` | Positional supremacy (White - Black): 235.00[cite: 1]
+
+**• Engine plays: `e4d5`** | Positional supremacy (White - Black): 346.00[cite: 1]
+```text
+. . . . k . . r
+. . P . b P P P
+P . . . p . . n
+. . P P p . . .
+. . . . . . . P
+. . . . Q . . .
+. . P P . P P .
+. N B . K . N R
+```
+**Your move:** `e8g8` | Positional supremacy (White - Black): 342.00[cite: 1]
+
+**• Engine plays: `e3e5`** | Positional supremacy (White - Black): 433.00[cite: 1]
+```text
+. . . . . r k .
+. . P . b P P P
+P . . . p . . n
+. . P P Q . . .
+. . . . . . . P
+. . . . . . . .
+. . P P . P P .
+. N B . K . N R
+```
+**Your move:** `e7c5` | Positional supremacy (White - Black): 375.00[cite: 1]
+
+**• Engine plays: `h1h3`** | Positional supremacy (White - Black): 463.00[cite: 1]
+```text
+. . . . . r k .
+. . P . . P P P
+P . . . p . . n
+. . b P Q . . .
+. . . . . . . P
+. . . . . . . R
+. . P P . P P .
+. N B . K . N .
+```
+**Your move:** `f8a8` | Positional supremacy (White - Black): 427.50[cite: 1]
+
+**• Engine plays: `d5e6`** | Positional supremacy (White - Black): 458.50[cite: 1]
+```text
+r . . . . . k .
+. . P . . P P P
+P . . . P . . n
+. . b . Q . . .
+. . . . . . . P
+. . . . . . . R
+. . P P . P P .
+. N B . K . N .
+```
+**Your move:** `f7e6` | Positional supremacy (White - Black): 436.00[cite: 1]
+
+**• Engine plays: `e5c5`** | Positional supremacy (White - Black): 647.50[cite: 1]
+```text
+r . . . . . k .
+. . P . . . P P
+P . . . p . . n
+. . Q . . . . .
+. . . . . . . P
+. . . . . . . R
+. . P P . P P .
+. N B . K . N .
+```
+**Your move:** `h6f7` | Positional supremacy (White - Black): 630.00[cite: 1]
+
+**• Engine plays: `c5b5`** | Positional supremacy (White - Black): 683.50[cite: 1]
+```text
+r . . . . . k .
+. . P . . n P P
+P . . . p . . .
+. Q . . . . . .
+. . . . . . . P
+. . . . . . . R
+. . P P . P P .
+. N B . K . N .
+```
+**Your move:** `a8c8` | Positional supremacy (White - Black): 697.50[cite: 1]
+
+**• Engine plays: `d2d4`** | Positional supremacy (White - Black): 779.00[cite: 1]
+```text
+. . r . . . k .
+. . P . . n P P
+P . . . p . . .
+. Q . . . . . .
+. . . P . . . P
+. . . . . . . R
+. . P . . P P .
+. N B . K . N .
+```
+**Your move:** `c7c6` | Positional supremacy (White - Black): 686.00[cite: 1]
+
+**• Engine plays: `b5b3`** | Positional supremacy (White - Black): 600.00[cite: 1]
+```text
+. . r . . . k .
+. . . . . n P P
+P . p . p . . .
+. . . . . . . .
+. . . P . . . P
+. Q . . . . . R
+. . P . . P P .
+. N B . K . N .
+```
+**Your move:** `c8d8` | Positional supremacy (White - Black): 580.00[cite: 1]
+
+**• Engine plays: `b3e6`** | Positional supremacy (White - Black): 670.00[cite: 1]
+```text
+. . . r . . k .
+. . . . . n P P
+P . p . Q . . .
+. . . . . . . .
+. . . P . . . P
+. . . . . . . R
+. . P . . P P .
+. N B . K . N .
+```
+**Your move:** `d8d4` | Positional supremacy (White - Black): 585.00[cite: 1]
+
+**• Engine plays: `e6e8`** | Positional supremacy (White - Black): 423.50[cite: 1]
+
+**Game over 1-0**[cite: 1]
+
+### Python Source Code
+```python
+import chess
+
+# Potential maximum attacks from a piece on an empty board
+POTENTIAL = {
+    chess.PAWN: 2,
+    chess.KNIGHT: 8,
+    chess.BISHOP: 13,
+    chess.ROOK: 14,
+    chess.QUEEN: 27,
+    chess.KING: 8,
+}
+
+def actual_control(board, square):
+    """Number of empty squares attacked by the piece on 'square'."""
+    piece = board.piece_at(square)
+    if not piece:
+        return 0
+    attacked = board.attacks(square)
+    empty = set(range(64)) - set(board.piece_map().keys())
+    return len(attacked & empty)
+
+def king_safety_score(board, color):
+    """Number of safe empty squares around the king (0-8)."""
+    king = board.king(color)
+    if king is None:
+        return 0
+    safe = 0
+    for dr in (-1, 0, 1):
+        for df in (-1, 0, 1):
+            if dr == 0 and df == 0:
+                continue
+            r = chess.square_rank(king) + dr
+            f = chess.square_file(king) + df
+            if 0 <= r < 8 and 0 <= f < 8:
+                sq = chess.square(f, r)
+                if board.piece_at(sq) is None and not board.is_attacked_by(not color, sq):
+                    safe += 1
+    return safe
+
+def positional_supremacy(board):
+    """White supremacy
+    (actual * potential) - (actual * potential) for Black,
+    plus king safety weighted at 0.5 per safe square."""
+    white_score = 0
+    black_score = 0
+    for sq in range(64):
+        piece = board.piece_at(sq)
+        if piece:
+            act = actual_control(board, sq)
+            pot = POTENTIAL[piece.piece_type]
+            contrib = act * pot
+            if piece.color == chess.WHITE:
+                white_score += contrib
+            else:
+                black_score += contrib
+                
+    white_score += 0.5 * king_safety_score(board, chess.WHITE)
+    black_score += 0.5 * king_safety_score(board, chess.BLACK)
+    return white_score - black_score
+
+def piece_geometric_value(board, square):
+    """Return the geometric contribution (act * pot) of the piece on the square."""
+    piece = board.piece_at(square)
+    if not piece:
+        return 0
+    return actual_control(board, square) * POTENTIAL[piece.piece_type]
+
+def attackers_defenders(board, square, color):
+    """Return (attackers_count, defenders_count) for the given square from perspective of 'color'."""
+    attackers = 0
+    defenders = 0
+    for sq in chess.SQUARES:
+        piece = board.piece_at(sq)
+        if not piece:
+            continue
+        if square in board.attacks(sq):
+            if piece.color == color:
+                defenders += 1
+            else:
+                attackers += 1
+    return attackers, defenders
+
+def is_threatened(board, square, color):
+    """Return True if the piece on 'square' is under threat and not adequately defended."""
+    piece = board.piece_at(square)
+    if not piece or piece.color != color:
+        return False
+        
+    attackers, defenders = attackers_defenders(board, square, color)
+    if attackers == 0:
+        return False
+        
+    if attackers > defenders:
+        return True
+        
+    # Even if defended, check for bad trade (attacker less valuable than piece)
+    piece_val = POTENTIAL[piece.piece_type]
+    for sq in chess.SQUARES:
+        attacker = board.piece_at(sq)
+        if attacker and attacker.color == (not color) and square in board.attacks(sq):
+            if POTENTIAL[attacker.piece_type] < piece_val:
+                return True
+    return False
+
+def get_threatened_squares(board, color):
+    """Return list of squares containing threatened pieces of the given color."""
+    threatened = []
+    for sq in chess.SQUARES:
+        if is_threatened(board, sq, color):
+            threatened.append(sq)
+    return threatened
+
+def geometric_see(board, move, color):
+    """Simplified Static Exchange Evaluation using geometric scores.
+    Simulate capture 'move', then opponent's best recapture on the same square.
+    Return net change in positional supremacy from 'color's perspective.
+    Positive means favorable trade."""
+    if not board.is_capture(move):
+        return 0
+        
+    original_score = positional_supremacy(board)
+    if color == chess.BLACK:
+        original_score = -original_score
+        
+    board_copy = board.copy()
+    captured_piece = board_copy.piece_at(move.to_square)
+    if captured_piece is None:
+        return 0
+        
+    board_copy.push(move)
+    recapture_square = move.to_square
+    best_opponent_score = float('inf') if color == chess.WHITE else -float('inf')
+    
+    for opp_move in board_copy.legal_moves:
+        if opp_move.to_square == recapture_square and board_copy.is_capture(opp_move):
+            b2 = board_copy.copy()
+            b2.push(opp_move)
+            score_after = positional_supremacy(b2)
+            if color == chess.WHITE:
+                if score_after < best_opponent_score:
+                    best_opponent_score = score_after
+            else:
+                if -score_after > best_opponent_score:
+                    best_opponent_score = -score_after
+                    
+    if best_opponent_score == float('inf') or best_opponent_score == -float('inf'):
+        score_after = positional_supremacy(board_copy)
+        if color == chess.BLACK:
+            score_after = -score_after
+        return score_after - original_score
+        
+    return best_opponent_score - original_score
+
+def get_new_attacks(board_before, board_after, color):
+    """Return set of enemy squares that are attacked in board_after but were not in board_before."""
+    new_attacks = set()
+    enemy_color = not color
+    for sq in chess.SQUARES:
+        piece = board_after.piece_at(sq)
+        if piece and piece.color == enemy_color:
+            if board_after.is_attacked_by(color, sq) and not board_before.is_attacked_by(color, sq):
+                new_attacks.add(sq)
+    return new_attacks
+
+def resolve_threats(board, color):
+    """Three-tier threat resolution with forward safety check.
+    Rejects moves that create new threatened pieces, unless they are favorable captures."""
+    threatened_squares = get_threatened_squares(board, color)
+    candidates = set()
+    
+    for move in board.legal_moves:
+        board_copy = board.copy()
+        board_copy.push(move)
+        new_threats = get_threatened_squares(board_copy, color)
+        
+        if new_threats:
+            if board.is_capture(move):
+                see_score = geometric_see(board, move, color)
+                if see_score >= 0:
+                    candidates.add(move)
+                continue
+                
+            if move.from_square in threatened_squares:
+                piece_still_threatened = is_threatened(board_copy, move.to_square, color)
+                if not piece_still_threatened:
+                    other_threats = [sq for sq in new_threats if sq != move.to_square]
+                    if not other_threats:
+                        candidates.add(move)
+                continue
+                
+        if not candidates:
+            max_threat_val = 0
+            for sq in threatened_squares:
+                piece = board.piece_at(sq)
+                if piece:
+                    val = POTENTIAL[piece.piece_type]
+                    if val > max_threat_val:
+                        max_threat_val = val
+                        
+            if board.is_capture(move):
+                target = board.piece_at(move.to_square)
+                if target and POTENTIAL[target.piece_type] >= max_threat_val:
+                    candidates.add(move)
+                    continue
+            else:
+                new_attacks = get_new_attacks(board, board_copy, color)
+                for enemy_sq in new_attacks:
+                    enemy_piece = board_copy.piece_at(enemy_sq)
+                    if enemy_piece and POTENTIAL[enemy_piece.piece_type] >= max_threat_val:
+                        candidates.add(move)
+                        break
+                else:
+                    candidates.add(move)
+                    
+    if candidates:
+        return list(candidates)
+    else:
+        return list(board.legal_moves)
+
+def best_move_minimax(board):
+    """Depth-1 minimax with threat pre-filter."""
+    moves_to_consider = resolve_threats(board, chess.WHITE)
+    best_score = -float('inf')
+    best_move = None
+    
+    for move in moves_to_consider:
+        b1 = board.copy()
+        b1.push(move)
+        
+        if b1.is_checkmate():
+            return move
+            
+        worst_black = float('inf')
+        for black_move in b1.legal_moves:
+            b2 = b1.copy()
+            b2.push(black_move)
+            score = positional_supremacy(b2)
+            if score < worst_black:
+                worst_black = score
+                
+        if worst_black == float('inf'):
+            worst_black = positional_supremacy(b1)
+            
+        if worst_black > best_score:
+            best_score = worst_black
+            best_move = move
+            
+    return best_move or next(iter(board.legal_moves))
+
+def play():
+    board = chess.Board()
+    print("=== Geometric Supremacy Engine with 3-Tier Threat Reflex ===")
+    print("Evaluation: actual * potential + 0.5 * king safety")
+    print("Depth-1 minimax. Enter moves in UCI format (e.g., e2e4).\n")
+    
+    while not board.is_game_over():
+        if board.turn == chess.WHITE:
+            move = best_move_minimax(board)
+            print(f"Engine plays: {move}")
+            board.push(move)
+        else:
+            print(board)
+            human_move = input("Your move: ").strip()
+            
+            if human_move.lower() == "quit":
+                break
+                
+            try:
+                move = chess.Move.from_uci(human_move)
+                if move in board.legal_moves:
+                    board.push(move)
+                else:
+                    print("Illegal move. Legal UCI moves:")
+                    print(", ".join(m.uci() for m in board.legal_moves))
+                    continue
+            except Exception:
+                print("Invalid format. Use e.g., e2e4")
+                continue
+                
+            sup = positional_supremacy(board)
+            print(f"Positional supremacy (White - Black): {sup:.2f}\n")
+            
+    print("Game over")
+    print(board.result())
+
+if __name__ == "__main__":
+    play()
+```
 
 ---
 
 ## References
-*(The key references from the uploaded documents are retained and supplemented as needed.)*
 
 1.  Concas, M. *The Intrinsic Blueprint: An Introduction to Relational Calculus*. Zenodo. doi:10.5281/zenodo.19757717.
 2.  Concas, M. *Scale-Invariant Jet Tagging via Relational Calculus*. 2026.
