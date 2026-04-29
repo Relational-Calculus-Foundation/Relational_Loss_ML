@@ -844,3 +844,61 @@ if __name__ == "__main__":
 5.  Kasieczka, G., et al. *The Machine Learning Landscape of Top Taggers*. SciPost Phys. 7(1), 014, 2019.
 6.  Shao, Z., et al. *DeepSeekMath: Pushing the Limits of Mathematical Reasoning*. 2024.
 7.  Goyal, S., et al. *Think Before You Speak: Training Language Models with Pause Tokens*. ICLR, 2024.
+
+### 10. Extended Bibliography
+
+**Dimensional Analysis, Relational Calculus & System Constraints**
+8. Buckingham, E. (1914). On physically similar systems; illustrations of the use of dimensional equations. *Physical Review*, 4(4), 345-376.
+9. Barenblatt, G. I. (1996). *Scaling, Self-similarity, and Intermediate Asymptotics: Dimensional Analysis and Intermediate Asymptotics*. Cambridge University Press.
+10. Bridgman, P. W. (1922). *Dimensional Analysis*. Yale University Press.
+11. Rayleigh, L. (1915). The principle of similitude. *Nature*, 95(2368), 66-68.
+12. Landauer, R. (1961). Irreversibility and heat generation in the computing process. *IBM Journal of Research and Development*, 5(3), 183-191.
+13. Kolmogorov, A. N. (1965). Three approaches to the quantitative definition of information. *Problems of Information Transmission*, 1(1), 1-7.
+14. Friston, K. (2010). The free-energy principle: a unified brain theory? *Nature Reviews Neuroscience*, 11(2), 127-138.
+15. Wolfram, S. (2002). *A New Kind of Science*. Wolfram Media.
+
+**Number Theory, Prime Gaps, & Deterministic Distribution (Pillar 1)**
+16. Cramér, H. (1936). On the order of magnitude of the difference between consecutive prime numbers. *Acta Arithmetica*, 2(1), 23-46.
+17. Hardy, G. H., & Littlewood, J. E. (1923). Some problems of 'Partitio numerorum'; III: On the expression of a number as a sum of primes. *Acta Mathematica*, 44(1), 1-70.
+18. Zhang, Y. (2014). Bounded gaps between primes. *Annals of Mathematics*, 179(3), 1121-1174.
+19. Maynard, J. (2015). Small gaps between primes. *Annals of Mathematics*, 181(1), 383-413.
+20. Tao, T. (2014). Polymath8b: Variants of the Selberg sieve, and bounded intervals containing many primes. *Research in the Mathematical Sciences*, 1(1), 1-43.
+21. Soundararajan, K. (2007). Small gaps between prime numbers: The work of Goldston-Pintz-Yıldırım. *Bulletin of the American Mathematical Society*, 44(1), 1-18.
+22. Montgomery, H. L. (1973). The pair correlation of zeros of the zeta function. *Analytic Number Theory*, 181-193.
+23. Gallagher, P. X. (1976). On the distribution of primes in short intervals. *Mathematika*, 23(1), 4-9.
+
+**Dynamical Systems, Minimax Search, & Chess Heuristics (Pillar 2)**
+24. Shannon, C. E. (1950). Programming a computer for playing chess. *Philosophical Magazine*, 41(314), 256-275.
+25. Turing, A. M. (1953). Digital computers applied to games. *Faster than thought*, 286-310.
+26. Silver, D., Hubert, T., Schrittwieser, J., et al. (2018). A general reinforcement learning algorithm that masters chess, shogi, and Go through self-play. *Science*, 362(6419), 1140-1144.
+27. Campbell, M., Hoane, A. J., & Hsu, F. H. (2002). Deep Blue. *Artificial Intelligence*, 134(1-2), 57-83.
+28. Knuth, D. E., & Moore, R. W. (1975). An analysis of alpha-beta pruning. *Artificial Intelligence*, 6(4), 293-326.
+29. Beal, D. F. (1990). A generalised quiescent search algorithm. *Artificial Intelligence*, 43(1), 85-98.
+30. Pearl, J. (1984). *Heuristics: Intelligent Search Strategies for Computer Problem Solving*. Addison-Wesley.
+31. Michie, D. (1966). Game-playing and game-learning automata. *Advances in Programming and Non-Numerical Computation*, 183-200.
+
+**High-Energy Physics & Zero-Shot Jet Tagging (Pillar 3)**
+32. Guest, D., Cranmer, K., & Whiteson, D. (2018). Deep learning and its application to LHC physics. *Annual Review of Nuclear and Particle Science*, 68, 161-181.
+33. Chen, T., & Guestrin, C. (2016). XGBoost: A scalable tree boosting system. *Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining*, 785-794.
+34. Larkoski, A. J., Moult, I., & Nachman, B. (2020). Physics of jets. *Physics Reports*, 841, 1-63.
+35. Thaler, J., & Van Tilburg, K. (2011). Identifying boosted objects with N-subjettiness. *Journal of High Energy Physics*, 2011(3), 1-42.
+36. Macaluso, S., & Shih, D. (2018). Pulling out all the tops with computer vision and deep learning. *Journal of High Energy Physics*, 2018(10), 1-24.
+37. Cogan, P., Kagan, M., Strauss, E., & Schwarztman, A. (2015). Jet-images: computer vision inspired techniques for jet tagging. *Journal of High Energy Physics*, 2015(2), 1-17.
+38. Salam, G. P. (2010). Towards Jetography. *The European Physical Journal C*, 67(3), 637-686.
+39. Butter, A., Kasieczka, G., Plehn, T., & Russell, M. (2018). Deep-learned top tagging with a Lorentz layer. *SciPost Physics*, 5(3), 028.
+
+**Latent Reasoning, Large Language Models & Constraint (Sections 6 & 7)**
+40. Wei, J., Wang, X., Schuurmans, D., et al. (2022). Chain-of-thought prompting elicits reasoning in large language models. *Advances in Neural Information Processing Systems*, 35, 24824-24837.
+41. Kojima, T., Gu, S. S., Reid, M., et al. (2022). Large language models are zero-shot reasoners. *Advances in Neural Information Processing Systems*, 35, 22199-22213.
+42. Ouyang, L., Wu, J., Jiang, X., et al. (2022). Training language models to follow instructions with human feedback. *Advances in Neural Information Processing Systems*, 35, 27730-27744.
+43. Borgeaud, S., Mensch, A., Hoffmann, J., et al. (2022). Training compute-optimal large language models. *arXiv preprint arXiv:2203.15556*.
+44. Kaplan, J., McCandlish, S., Henighan, T., et al. (2020). Scaling laws for neural language models. *arXiv preprint arXiv:2001.08361*.
+45. Wang, X., Wei, J., Schuurmans, D., et al. (2022). Self-consistency improves chain of thought reasoning in language models. *arXiv preprint arXiv:2203.11171*.
+46. Nye, M., Andreassen, A. J., Gur-Ari, G., et al. (2021). Show your work: Scratchpads for intermediate computation with language models. *arXiv preprint arXiv:2112.00114*.
+47. Zipf, G. K. (1949). *Human Behavior and the Principle of Least Effort: An Introduction to Human Ecology*. Addison-Wesley.
+48. Vaswani, A., Shazeer, N., Parmar, N., et al. (2017). Attention is all you need. *Advances in Neural Information Processing Systems*, 30.
+49. Poesia, G., Polozov, A., Le, V., et al. (2022). Synchromesh: Reliable code generation from pre-trained language models using constrained decoding. *International Conference on Learning Representations*.
+50. Lu, P., Peng, B., Cheng, H., et al. (2023). Chameleon: Plug-and-play compositional reasoning with large language models. *Advances in Neural Information Processing Systems*, 36.
+
+## 11. Data and Code Availability
+(https://github.com/massimilianoconcas0-del/Relational_Loss_ML/)
