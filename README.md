@@ -7,7 +7,7 @@
 ![XGBoost](https://img.shields.io/badge/Engine-Relational_XGBoost-blueviolet)
 ![Tabular Data](https://img.shields.io/badge/Domain-CSV_%2F_Tabular_Data-orange)
 ![Scale Invariant](https://img.shields.io/badge/Property-Scale%20Invariant-brightgreen)
-![Optimizer](https://img.shields.io/badge/Optimizer-Adam_Not_Required-blue)
+![Optimizer](https://img.shields.io/badge/Optimizer-Adam_Not_Required-brown)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.19757717-blue.svg)](https://doi.org/10.5281/zenodo.19757717)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.19827952-blue.svg)](https://doi.org/10.5281/zenodo.19827952)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.19841529-blue.svg)](https://doi.org/10.5281/zenodo.19841529)
