@@ -16,6 +16,7 @@
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.19895574-blue.svg)](https://doi.org/10.5281/zenodo.19895574)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1q9yIJpYAHJR1VveZsp4Z90Kh15PC-8o9)
 ![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0005--7878--636X-A6CE39?style=flat&logo=orcid&logoColor=white)](https://orcid.org/0009-0005-7878-636X)
 
 **Keywords:** `Scale-Invariant Loss`, `Zero-Shot Transfer`, `XGBoost`, `Tabular Data`, `Dimensionless Math`, `Machine Learning Optimization`, `PyTorch Custom Loss`, `Exploding Gradient Fix`, `VRAM Reduction`.
 
