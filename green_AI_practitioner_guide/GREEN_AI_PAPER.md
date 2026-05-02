@@ -1,4 +1,8 @@
 # The Intrinsic Blueprint: A Practitioner's Guide to Relational Calculus and Green AI
+**Version:** 1.0
+**Status:** Complete Draft
+**Author:** Massimiliano Concas - Ciber Fabbrica
+**Date:** May-02-2026
 
 ### Abstract
 
