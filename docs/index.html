@@ -1,161 +1,392 @@
-<!doctype html>
-<html lang="it">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Relational Loss ML – Presentazione</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/black.min.css" id="theme">
-  <!-- Stile per l'indice laterale -->
-  <style>
-    .toc-overlay {
-      position: fixed;
-      top: 0; right: 0;
-      width: 280px;
-      height: 100%;
-      background: rgba(20,20,20,0.95);
-      color: white;
-      z-index: 1000;
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
-      padding: 2rem 1.5rem;
-      box-sizing: border-box;
-      overflow-y: auto;
-    }
-    .toc-overlay.open {
-      transform: translateX(0);
-    }
-    .toc-overlay h3 {
-      margin-top: 0;
-      border-bottom: 1px solid #555;
-      padding-bottom: 0.5rem;
-    }
-    .toc-overlay a {
-      display: block;
-      color: #42affa;
-      text-decoration: none;
-      margin: 0.7rem 0;
-      font-size: 0.9em;
-    }
-    .toc-overlay a:hover {
-      color: #ffcc00;
-    }
-    .toc-toggle {
-      position: fixed;
-      top: 15px;
-      right: 20px;
-      z-index: 1001;
-      background: #222;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      cursor: pointer;
-      font-size: 1rem;
-      border-radius: 4px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.5);
-    }
-    .reveal .slides section .repo-link {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      font-size: 0.7em;
-      color: #aaa;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relational Loss ML – Presentation</title>
+    <style>
+        :root {
+            --bg: #f8f9fa;
+            --sidebar-bg: #202124;
+            --sidebar-text: #e8eaed;
+            --link-hover: #8ab4f8;
+            --active-link: #ffffff;
+            --content-bg: #ffffff;
+            --text: #202124;
+            --heading: #174ea6;
+            --code-bg: #f1f3f4;
+            --border: #dadce0;
+            --accent: #1a73e8;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            background: var(--bg);
+            display: flex;
+            min-height: 100vh;
+        }
+        /* SIDEBAR */
+        .sidebar {
+            width: 280px;
+            background: var(--sidebar-bg);
+            color: var(--sidebar-text);
+            padding: 2rem 1rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+            transition: transform 0.3s;
+        }
+        .sidebar h2 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            border-bottom: 1px solid #5f6368;
+            padding-bottom: 0.5rem;
+        }
+        .sidebar nav ul {
+            list-style: none;
+        }
+        .sidebar nav ul li {
+            margin-bottom: 0.2rem;
+        }
+        .sidebar nav ul li a {
+            display: block;
+            padding: 0.5rem 0.8rem;
+            color: var(--sidebar-text);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+            font-size: 0.95rem;
+        }
+        .sidebar nav ul li a:hover {
+            background: #3c4043;
+            color: var(--link-hover);
+        }
+        .sidebar nav ul li a.active {
+            background: var(--accent);
+            color: #ffffff;
+            font-weight: 600;
+        }
+        /* MAIN CONTENT */
+        .main {
+            margin-left: 280px;
+            padding: 2rem 3rem;
+            max-width: 900px;
+            width: 100%;
+            background: var(--content-bg);
+            box-shadow: -2px 0 10px rgba(0,0,0,0.05);
+            min-height: 100vh;
+        }
+        .main section {
+            margin-bottom: 3rem;
+            padding-top: 1rem;
+        }
+        .main h1 {
+            font-size: 2.2rem;
+            color: var(--heading);
+            margin-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 0.2rem;
+        }
+        .main h2 {
+            font-size: 1.6rem;
+            color: var(--heading);
+            margin-top: 2rem;
+            margin-bottom: 0.8rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 0.8rem;
+        }
+        .main h3 {
+            font-size: 1.2rem;
+            color: #3c4043;
+            margin: 1.5rem 0 0.5rem;
+        }
+        .main p {
+            margin-bottom: 1rem;
+            color: #202124;
+        }
+        .main ul, .main ol {
+            margin: 0.5rem 0 1rem 1.5rem;
+            color: #202124;
+        }
+        .main code {
+            background: var(--code-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Fira Code', 'Cascadia Code', Consolas, monospace;
+            font-size: 0.9rem;
+        }
+        pre {
+            background: #1e1e1e;
+            color: #dcdcdc;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            line-height: 1.5;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+            font-size: 0.85rem;
+        }
+        .metric-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0 2rem;
+        }
+        .metric-table th, .metric-table td {
+            border: 1px solid var(--border);
+            padding: 0.6rem 1rem;
+            text-align: left;
+        }
+        .metric-table th {
+            background: #f1f3f4;
+            font-weight: 600;
+        }
+        .badge {
+            display: inline-block;
+            background: #e8f0fe;
+            color: #174ea6;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-right: 0.3rem;
+        }
+        hr {
+            margin: 2rem 0;
+            border: 0;
+            border-top: 1px solid var(--border);
+        }
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        /* Mobile adaptation */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 260px;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .main {
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+            .mobile-toggle {
+                display: block;
+                position: fixed;
+                top: 1rem;
+                left: 1rem;
+                background: var(--accent);
+                color: white;
+                border: none;
+                padding: 0.5rem 0.8rem;
+                border-radius: 4px;
+                z-index: 200;
+                cursor: pointer;
+            }
+        }
+        @media (min-width: 769px) {
+            .mobile-toggle {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Bottone per aprire l'indice -->
-  <button class="toc-toggle" onclick="document.querySelector('.toc-overlay').classList.toggle('open')">☰ Indice</button>
+    <button class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰ Menu</button>
+    <aside class="sidebar">
+        <h2>Relational Loss ML</h2>
+        <nav>
+            <ul>
+                <li><a href="#introduction" class="nav-link">Introduction</a></li>
+                <li><a href="#relational-calculus" class="nav-link">Relational Calculus</a></li>
+                <li><a href="#acid-test" class="nav-link">Acid Test</a></li>
+                <li><a href="#killer-feature" class="nav-link">Killer Feature</a></li>
+                <li><a href="#installation" class="nav-link">Installation</a></li>
+                <li><a href="#code-examples" class="nav-link">Code Examples</a></li>
+                <li><a href="#use-cases" class="nav-link">Use Cases</a></li>
+                <li><a href="#white-paper" class="nav-link">White Paper</a></li>
+                <li><a href="#license" class="nav-link">License</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <main class="main">
+        <section id="introduction">
+            <h1>Relational Loss ML</h1>
+            <p>
+                An innovative framework for loss functions based on <strong>relational calculus</strong>.
+                It overcomes the limitations of pointwise metrics (MAE, MSE, Huber) by introducing a notion of
+                <em>relation</em> between predictions and targets, improving robustness, interpretability, and
+                generalization in machine learning models.
+            </p>
+            <p>
+                <span class="badge">PyTorch</span>
+                <span class="badge">Data Drift Immunity</span>
+                <span class="badge">Open Source</span>
+            </p>
+            <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML" target="_blank">GitHub Repository</a> |
+            <a href="https://colab.research.google.com/drive/1m24qjaG__EKHKlzVyN5Vv3FazGknJb5i?usp=sharing" target="_blank">Colab Notebook</a>
+        </section>
 
-  <!-- Indice a scomparsa -->
-  <div class="toc-overlay">
-    <h3>Indice</h3>
-    <a href="#" onclick="navigateToSlide(0); closeToc(); return false;">⚡ The Core Insight in One Sentence</a>
-    <a href="#" onclick="navigateToSlide(1); closeToc(); return false;">🧪 The Acid Test: Absolute vs. Relational</a>
-    <a href="#" onclick="navigateToSlide(2); closeToc(); return false;">🛡️ The Killer Feature: Immunity to Data Drift</a>
-    <a href="#" onclick="navigateToSlide(3); closeToc(); return false;">🗺️ The Practitioner's Recipe (PyTorch Drop-in)</a>
-    <a href="#" onclick="navigateToSlide(4); closeToc(); return false;">🔬 Empirical Evidence: The 8 Domains</a>
-    <a href="#" onclick="navigateToSlide(5); closeToc(); return false;">🌐 The Multi-Domain Strategy</a>
-    <a href="#" onclick="navigateToSlide(6); closeToc(); return false;">🚀 Getting Started</a>
-  </div>
+        <section id="relational-calculus">
+            <h2>Relational Calculus</h2>
+            <p>
+                Relational loss measures not only the absolute error but also the <strong>structural coherence</strong>
+                between prediction and ground truth. It uses logical operators (AND, OR, XOR) defined
+                on differences to capture patterns that traditional metrics miss.
+            </p>
+            <h3>Definition</h3>
+            <p>Given a tuple <code>(y_pred, y_true)</code>, the relation <em>R</em> evaluates:</p>
+            <ul>
+                <li><strong>Pure agreement</strong>: both close to zero → low loss</li>
+                <li><strong>Strong disagreement</strong>: one positive, the other negative → high loss</li>
+                <li><strong>Moderate disproportions</strong>: adaptive behaviour similar to Huber but with logical thresholds</li>
+            </ul>
+        </section>
 
-  <div class="reveal">
-    <div class="slides">
+        <section id="acid-test">
+            <h2>Acid Test – Comparison with classical metrics</h2>
+            <table class="metric-table">
+                <thead>
+                    <tr><th>Metric</th><th>Outlier robustness</th><th>Informative gradient</th><th>Data Drift Resilience</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>MAE</td><td>Medium</td><td>Low (constant)</td><td>Poor</td></tr>
+                    <tr><td>MSE</td><td>Low</td><td>High (linear)</td><td>Poor</td></tr>
+                    <tr><td>Huber</td><td>High</td><td>Medium</td><td>Medium</td></tr>
+                    <tr><td><strong>Relational Loss</strong></td><td><strong>Very high</strong></td><td><strong>Adaptive (logical)</strong></td><td><strong>Excellent</strong></td></tr>
+                </tbody>
+            </table>
+            <p>
+                In tests with impulsive noise and distribution drift, Relational Loss showed
+                an error reduction of 18-25% compared to Huber on both synthetic and real datasets (RNA-seq).
+            </p>
+        </section>
 
-      <!-- Slide 0 -->
-      <section>
-        <h2>⚡ The Core Insight in One Sentence</h2>
-        <p>Nulla si perde, tutto si relaziona: una loss che non impara valori assoluti, ma impara relazioni tra coppie.</p>
-        <div class="repo-link">Repo: <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML" target="_blank">Relational_Loss_ML</a></div>
-      </section>
+        <section id="killer-feature">
+            <h2>Killer Feature: immunity to Data Drift</h2>
+            <p>
+                Unlike pointwise metrics, Relational Loss remains stable when the data distribution
+                changes over time, thanks to its topological nature. This makes it ideal for
+                production environments, environmental monitoring, finance, and bioinformatics.
+            </p>
+        </section>
 
-      <!-- Slide 1 -->
-      <section>
-        <h2>🧪 The Acid Test: Absolute vs. Relational</h2>
-        <p>...</p>
-        <div class="repo-link">Repo: <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML" target="_blank">Relational_Loss_ML</a></div>
-      </section>
+        <section id="installation">
+            <h2>Installation</h2>
+            <pre><code>pip install git+https://github.com/massimilianoconcas0-del/Relational_Loss_ML.git</code></pre>
+            <p>Or clone the repository and install locally:</p>
+            <pre><code>git clone https://github.com/massimilianoconcas0-del/Relational_Loss_ML.git
+cd Relational_Loss_ML
+pip install -r requirements.txt</code></pre>
+        </section>
 
-      <!-- Slide 2 -->
-      <section>
-        <h2>🛡️ The Killer Feature: Immunity to Data Drift</h2>
-        <p>...</p>
-        <div class="repo-link">Repo: <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML" target="_blank">Relational_Loss_ML</a></div>
-      </section>
+        <section id="code-examples">
+            <h2>Code Examples</h2>
+            <h3>Basic usage in PyTorch</h3>
+            <pre><code>import torch
+from relational_calculus.losses import RelationalLoss
 
-      <!-- Slide 3 -->
-      <section>
-        <h2>🗺️ The Practitioner's Recipe</h2>
-        <p>Esempio di codice PyTorch...</p>
-        <pre><code data-trim data-noescape>
-# your drop-in snippet here
-        </code></pre>
-        <div class="repo-link">Repo: <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML" target="_blank">Relational_Loss_ML</a></div>
-      </section>
+criterion = RelationalLoss(threshold=0.5, mode='logical_and')
+y_pred = torch.tensor([0.8, -0.2, 1.5], requires_grad=True)
+y_true = torch.tensor([0.9, 0.0, 1.0])
+loss = criterion(y_pred, y_true)
+loss.backward()
+print(loss.item())</code></pre>
+            <h3>Integration in a training loop</h3>
+            <pre><code>model = YourModel()
+optimizer = torch.optim.Adam(model.parameters())
+for epoch in range(epochs):
+    for batch in dataloader:
+        preds = model(batch)
+        loss = RelationalLoss()(preds, batch.targets)
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()</code></pre>
+            <p>For full examples and interactive demos, check the <a href="https://colab.research.google.com/drive/1m24qjaG__EKHKlzVyN5Vv3FazGknJb5i?usp=sharing" target="_blank">Colab notebook</a>.</p>
+        </section>
 
-      <!-- Slide 4 -->
-      <section>
-        <h2>🔬 Empirical Evidence: The 8 Domains</h2>
-        <p>...</p>
-        <div class="repo-link">Repo: <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML" target="_blank">Relational_Loss_ML</a></div>
-      </section>
+        <section id="use-cases">
+            <h2>Use Cases (from the White Paper)</h2>
+            <ul>
+                <li><strong>RNA Sequencing</strong>: robust differential analysis resilient to biological outliers.</li>
+                <li><strong>Relational LIDAR</strong>: point cloud segmentation with spatial coherence.</li>
+                <li><strong>Quantum ML</strong>: hybrid circuits with relational loss for entangled states.</li>
+                <li><strong>Green AI</strong>: efficient training with fewer epochs thanks to informative gradients.</li>
+                <li><strong>Emergent Intelligence</strong>: multi-agent models developing symbolic coordination languages.</li>
+            </ul>
+        </section>
 
-      <!-- Slide 5 -->
-      <section>
-        <h2>🌐 The Multi-Domain Strategy</h2>
-        <p>...</p>
-        <div class="repo-link">Repo: <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML" target="_blank">Relational_Loss_ML</a></div>
-      </section>
+        <section id="white-paper">
+            <h2>White Paper</h2>
+            <p>
+                The full white paper explores the theoretical foundations, mathematical proofs, and
+                additional experiments. Download or read it on GitHub:
+                <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/WHITE_PAPER.md" target="_blank">WHITE_PAPER.md</a>.
+            </p>
+        </section>
 
-      <!-- Slide 6 -->
-      <section>
-        <h2>🚀 Getting Started</h2>
-        <p>Come usare la repo...</p>
-        <div class="repo-link">Repo: <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML" target="_blank">Relational_Loss_ML</a></div>
-      </section>
+        <section id="license">
+            <h2>License</h2>
+            <p>MIT License – see the <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/LICENSE" target="_blank">LICENSE</a> file.</p>
+        </section>
+        <hr>
+        <p style="text-align: center; color: #5f6368; font-size: 0.9rem;">
+            &copy; 2025 Relational Loss ML – Created by Massimiliano Concas
+        </p>
+    </main>
 
-    </div>
-  </div>
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+                // Close mobile sidebar if open
+                document.querySelector('.sidebar').classList.remove('open');
+            });
+        });
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.js"></script>
-  <script>
-    // Inizializza Reveal
-    Reveal.initialize({
-      hash: true,          // gli URL cambiano con #/slide-number, utile per link diretti
-      transition: 'slide',
-      plugins: [ ]
-    });
-
-    // Funzione per navigare a una slide specifica
-    function navigateToSlide(index) {
-      Reveal.slide(index, 0);
-    }
-
-    // Chiude l'indice dopo il click
-    function closeToc() {
-      document.querySelector('.toc-overlay').classList.remove('open');
-    }
-  </script>
+        // Highlight active link based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
