@@ -79,7 +79,6 @@
         .main {
             margin-left: 280px;
             padding: 2rem 3rem;
-            max-width: 900px;
             width: 100%;
             background: var(--content-bg);
             box-shadow: -2px 0 10px rgba(0,0,0,0.05);
@@ -88,6 +87,8 @@
         .main section {
             margin-bottom: 3rem;
             padding-top: 1rem;
+            max-width: 900px;
+            margin: auto;
         }
         .main h1 {
             font-size: 2.2rem;
@@ -209,6 +210,10 @@
             }
         }
     </style>
+    <!-- Da aggiungere nel <head> dopo il <style> esistente -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
 </head>
 <body>
     <button class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰ Menu</button>
@@ -292,9 +297,9 @@
 
         <section id="installation">
             <h2>Installation</h2>
-            <pre><code>pip install git+https://github.com/massimilianoconcas0-del/Relational_Loss_ML.git</code></pre>
+            <pre><code class="language-bash">pip install git+https://github.com/massimilianoconcas0-del/Relational_Loss_ML.git</code></pre>
             <p>Or clone the repository and install locally:</p>
-            <pre><code>git clone https://github.com/massimilianoconcas0-del/Relational_Loss_ML.git
+            <pre><code class="language-bash">git clone https://github.com/massimilianoconcas0-del/Relational_Loss_ML.git
 cd Relational_Loss_ML
 pip install -r requirements.txt</code></pre>
         </section>
@@ -302,7 +307,7 @@ pip install -r requirements.txt</code></pre>
         <section id="code-examples">
             <h2>Code Examples</h2>
             <h3>Basic usage in PyTorch</h3>
-            <pre><code>import torch
+            <pre><code class="language-python">import torch
 from relational_calculus.losses import RelationalLoss
 
 criterion = RelationalLoss(threshold=0.5, mode='logical_and')
@@ -312,7 +317,7 @@ loss = criterion(y_pred, y_true)
 loss.backward()
 print(loss.item())</code></pre>
             <h3>Integration in a training loop</h3>
-            <pre><code>model = YourModel()
+            <pre><code class="language-python">model = YourModel()
 optimizer = torch.optim.Adam(model.parameters())
 for epoch in range(epochs):
     for batch in dataloader:
@@ -325,15 +330,35 @@ for epoch in range(epochs):
         </section>
 
         <section id="use-cases">
-            <h2>Use Cases (from the White Paper)</h2>
-            <ul>
-                <li><strong>RNA Sequencing</strong>: robust differential analysis resilient to biological outliers.</li>
-                <li><strong>Relational LIDAR</strong>: point cloud segmentation with spatial coherence.</li>
-                <li><strong>Quantum ML</strong>: hybrid circuits with relational loss for entangled states.</li>
-                <li><strong>Green AI</strong>: efficient training with fewer epochs thanks to informative gradients.</li>
-                <li><strong>Emergent Intelligence</strong>: multi-agent models developing symbolic coordination languages.</li>
-            </ul>
-        </section>
+    <h2>Use Cases (from the White Paper)</h2>
+    <ul>
+        <li>
+            <strong>RNA Sequencing</strong>: 
+            <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/rna_sequencing" target="_blank">rna_sequencing</a> – 
+            robust differential analysis resilient to biological outliers.
+        </li>
+        <li>
+            <strong>Relational LIDAR</strong>: 
+            <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/relational_lidar" target="_blank">relational_lidar</a> – 
+            point cloud segmentation with spatial coherence.
+        </li>
+        <li>
+            <strong>Quantum ML</strong>: 
+            <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/quantum_machine_learning" target="_blank">quantum_machine_learning</a> – 
+            hybrid circuits with relational loss for entangled states.
+        </li>
+        <li>
+            <strong>Green AI</strong>: 
+            <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/green_AI_practitioner_guide" target="_blank">green_AI_practitioner_guide</a> – 
+            efficient training with fewer epochs thanks to informative gradients.
+        </li>
+        <li>
+            <strong>Emergent Intelligence</strong>: 
+            <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/emergent_intelligence" target="_blank">emergent_intelligence</a> – 
+            multi-agent models developing symbolic coordination languages.
+        </li>
+    </ul>
+</section>
 
         <section id="white-paper">
             <h2>White Paper</h2>
