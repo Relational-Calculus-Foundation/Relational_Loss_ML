@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relational Loss ML – Presentazione</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reset.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/black.min.css" id="theme">
+  <!-- Stile per l'indice laterale -->
+  <style>
+    .toc-overlay {
+      position: fixed;
+      top: 0; right: 0;
+      width: 280px;
+      height: 100%;
+      background: rgba(20,20,20,0.95);
+      color: white;
+      z-index: 1000;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      padding: 2rem 1.5rem;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+    .toc-overlay.open {
+      transform: translateX(0);
+    }
+    .toc-overlay h3 {
+      margin-top: 0;
+      border-bottom: 1px solid #555;
+      padding-bottom: 0.5rem;
+    }
+    .toc-overlay a {
+      display: block;
+      color: #42affa;
+      text-decoration: none;
+      margin: 0.7rem 0;
+      font-size: 0.9em;
+    }
+    .toc-overlay a:hover {
+      color: #ffcc00;
+    }
+    .toc-toggle {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      z-index: 1001;
+      background: #222;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 1rem;
+      border-radius: 4px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.5);
+    }
+    .reveal .slides section .repo-link {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      font-size: 0.7em;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <!-- Bottone per aprire l'indice -->
+  <button class="toc-toggle" onclick="document.querySelector('.toc-overlay').classList.toggle('open')">☰ Indice</button>
+
+  <!-- Indice a scomparsa -->
+  <div class="toc-overlay">
+    <h3>Indice</h3>
+    <a href="#" onclick="navigateToSlide(0); closeToc(); return false;">⚡ The Core Insight in One Sentence</a>
+    <a href="#" onclick="navigateToSlide(1); closeToc(); return false;">🧪 The Acid Test: Absolute vs. Relational</a>
+    <a href="#" onclick="navigateToSlide(2); closeToc(); return false;">🛡️ The Killer Feature: Immunity to Data Drift</a>
+    <a href="#" onclick="navigateToSlide(3); closeToc(); return false;">🗺️ The Practitioner's Recipe (PyTorch Drop-in)</a>
+    <a href="#" onclick="navigateToSlide(4); closeToc(); return false;">🔬 Empirical Evidence: The 8 Domains</a>
+    <a href="#" onclick="navigateToSlide(5); closeToc(); return false;">🌐 The Multi-Domain Strategy</a>
+    <a href="#" onclick="navigateToSlide(6); closeToc(); return false;">🚀 Getting Started</a>
+  </div>
+
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Slide 0 -->
+      <section>
+        <h2>⚡ The Core Insight in One Sentence</h2>
+        <p>Nulla si perde, tutto si relaziona: una loss che non impara valori assoluti, ma impara relazioni tra coppie.</p>
+        <div class="repo-link">Repo: <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML" target="_blank">Relational_Loss_ML</a></div>
+      </section>
+
+      <!-- Slide 1 -->
+      <section>
+        <h2>🧪 The Acid Test: Absolute vs. Relational</h2>
+        <p>...</p>
+        <div class="repo-link">Repo: <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML" target="_blank">Relational_Loss_ML</a></div>
+      </section>
+
+      <!-- Slide 2 -->
+      <section>
+        <h2>🛡️ The Killer Feature: Immunity to Data Drift</h2>
+        <p>...</p>
+        <div class="repo-link">Repo: <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML" target="_blank">Relational_Loss_ML</a></div>
+      </section>
+
+      <!-- Slide 3 -->
+      <section>
+        <h2>🗺️ The Practitioner's Recipe</h2>
+        <p>Esempio di codice PyTorch...</p>
+        <pre><code data-trim data-noescape>
+# your drop-in snippet here
+        </code></pre>
+        <div class="repo-link">Repo: <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML" target="_blank">Relational_Loss_ML</a></div>
+      </section>
+
+      <!-- Slide 4 -->
+      <section>
+        <h2>🔬 Empirical Evidence: The 8 Domains</h2>
+        <p>...</p>
+        <div class="repo-link">Repo: <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML" target="_blank">Relational_Loss_ML</a></div>
+      </section>
+
+      <!-- Slide 5 -->
+      <section>
+        <h2>🌐 The Multi-Domain Strategy</h2>
+        <p>...</p>
+        <div class="repo-link">Repo: <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML" target="_blank">Relational_Loss_ML</a></div>
+      </section>
+
+      <!-- Slide 6 -->
+      <section>
+        <h2>🚀 Getting Started</h2>
+        <p>Come usare la repo...</p>
+        <div class="repo-link">Repo: <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML" target="_blank">Relational_Loss_ML</a></div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.js"></script>
+  <script>
+    // Inizializza Reveal
+    Reveal.initialize({
+      hash: true,          // gli URL cambiano con #/slide-number, utile per link diretti
+      transition: 'slide',
+      plugins: [ ]
+    });
+
+    // Funzione per navigare a una slide specifica
+    function navigateToSlide(index) {
+      Reveal.slide(index, 0);
+    }
+
+    // Chiude l'indice dopo il click
+    function closeToc() {
+      document.querySelector('.toc-overlay').classList.remove('open');
+    }
+  </script>
+</body>
+</html>
