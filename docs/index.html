@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relational Loss ML – Presentation</title>
+    <!-- Highlight.js for code syntax highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/github-dark.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
     <style>
         :root {
             --bg: #f8f9fa;
@@ -16,12 +20,10 @@
             --heading: #174ea6;
             --border: #dadce0;
             --accent: #1a73e8;
+            --accordion-bg: #2c2f33;
+            --accordion-hover: #3c4043;
         }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
@@ -31,10 +33,10 @@
         }
         /* SIDEBAR */
         .sidebar {
-            width: 280px;
+            width: 300px;
             background: var(--sidebar-bg);
             color: var(--sidebar-text);
-            padding: 2rem 1rem;
+            padding: 1.5rem 1rem;
             position: fixed;
             top: 0;
             left: 0;
@@ -44,39 +46,64 @@
             transition: transform 0.3s;
         }
         .sidebar h2 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
             color: #ffffff;
             border-bottom: 1px solid #5f6368;
             padding-bottom: 0.5rem;
         }
-        .sidebar nav ul {
-            list-style: none;
-        }
-        .sidebar nav ul li {
-            margin-bottom: 0.2rem;
-        }
+        .sidebar nav ul { list-style: none; padding-left: 0; }
+        .sidebar nav ul li { margin-bottom: 0.1rem; }
         .sidebar nav ul li a {
             display: block;
-            padding: 0.5rem 0.8rem;
+            padding: 0.4rem 0.8rem;
             color: var(--sidebar-text);
             text-decoration: none;
-            border-radius: 6px;
+            border-radius: 4px;
             transition: background 0.2s, color 0.2s;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
-        .sidebar nav ul li a:hover {
-            background: #3c4043;
-            color: var(--link-hover);
+        .sidebar nav ul li a:hover { background: var(--accordion-hover); color: var(--link-hover); }
+        .sidebar nav ul li a.active { background: var(--accent); color: #ffffff; font-weight: 600; }
+
+        /* Accordion Styles */
+        .accordion-toggle {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            color: inherit;
+            font-size: 0.9rem;
+            font-family: inherit;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            transition: background 0.2s, color 0.2s;
         }
-        .sidebar nav ul li a.active {
-            background: var(--accent);
-            color: #ffffff;
-            font-weight: 600;
+        .accordion-toggle:hover { background: var(--accordion-hover); color: var(--link-hover); }
+        .accordion-toggle .arrow {
+            font-size: 0.7rem;
+            transition: transform 0.3s;
         }
+        .accordion-toggle.open .arrow { transform: rotate(90deg); }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding-left: 1.2rem;
+        }
+        .accordion-content.open { max-height: 1500px; }
+        .accordion-content a {
+            font-size: 0.82rem;
+            padding: 0.25rem 0.6rem;
+        }
+
         /* MAIN CONTENT */
         .main {
-            margin-left: 280px;
+            margin-left: 300px;
             padding: 2rem 3rem;
             width: 100%;
             background: var(--content-bg);
@@ -86,7 +113,7 @@
         .main section {
             margin-bottom: 3rem;
             padding-top: 1rem;
-            max-width: 900px;
+            max-width: 950px;
             margin: auto;
         }
         .main h1 {
@@ -110,14 +137,9 @@
             color: #3c4043;
             margin: 1.5rem 0 0.5rem;
         }
-        .main p {
-            margin-bottom: 1rem;
-            color: #202124;
-        }
-        .main ul, .main ol {
-            margin: 0.5rem 0 1rem 1.5rem;
-            color: #202124;
-        }
+        .main p { margin-bottom: 1rem; color: #202124; }
+        .main ul, .main ol { margin: 0.5rem 0 1rem 1.5rem; color: #202124; }
+        .main ul li { margin-bottom: 0.3rem; }
         .main code {
             padding: 0.2rem 0.4rem;
             border-radius: 4px;
@@ -130,12 +152,7 @@
             margin: 1rem 0;
             line-height: 1.5;
         }
-        pre code {
-            background: none;
-            padding: 0;
-            color: inherit;
-            font-size: 0.85rem;
-        }
+        pre code { background: none; padding: 0; color: inherit; font-size: 0.85rem; }
         .metric-table {
             width: 100%;
             border-collapse: collapse;
@@ -146,10 +163,7 @@
             padding: 0.6rem 1rem;
             text-align: left;
         }
-        .metric-table th {
-            background: #f1f3f4;
-            font-weight: 600;
-        }
+        .metric-table th { background: #f1f3f4; font-weight: 600; }
         .badge {
             display: inline-block;
             background: #e8f0fe;
@@ -160,31 +174,14 @@
             font-weight: 500;
             margin-right: 0.3rem;
         }
-        hr {
-            margin: 2rem 0;
-            border: 0;
-            border-top: 1px solid var(--border);
-        }
-        a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+        hr { margin: 2rem 0; border: 0; border-top: 1px solid var(--border); }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
         /* Mobile adaptation */
         @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-                width: 260px;
-            }
-            .sidebar.open {
-                transform: translateX(0);
-            }
-            .main {
-                margin-left: 0;
-                padding: 1.5rem;
-            }
+            .sidebar { transform: translateX(-100%); width: 280px; }
+            .sidebar.open { transform: translateX(0); }
+            .main { margin-left: 0; padding: 1.5rem; }
             .mobile-toggle {
                 display: block;
                 position: fixed;
@@ -199,183 +196,538 @@
                 cursor: pointer;
             }
         }
-        @media (min-width: 769px) {
-            .mobile-toggle {
-                display: none;
-            }
+        @media (min-width: 769px) { .mobile-toggle { display: none; } }
+        .main img { max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0; }
+        .paper-link {
+            display: inline-block;
+            background: #f1f3f4;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin: 0.2rem 0.3rem 0.2rem 0;
         }
     </style>
-    <!-- Da aggiungere nel <head> dopo il <style> esistente -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
 </head>
 <body>
     <button class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰ Menu</button>
     <aside class="sidebar">
-        <h2>Relational Loss ML</h2>
+        <h2>Relational Calculus</h2>
         <nav>
             <ul>
-                <li><a href="#introduction" class="nav-link">Introduction</a></li>
-                <li><a href="#relational-calculus" class="nav-link">Relational Calculus</a></li>
-                <li><a href="#acid-test" class="nav-link">Acid Test</a></li>
-                <li><a href="#killer-feature" class="nav-link">Killer Feature</a></li>
-                <li><a href="#installation" class="nav-link">Installation</a></li>
-                <li><a href="#code-examples" class="nav-link">Code Examples</a></li>
-                <li><a href="#use-cases" class="nav-link">Use Cases</a></li>
-                <li><a href="#white-paper" class="nav-link">White Paper</a></li>
-                <li><a href="#license" class="nav-link">License</a></li>
+                <!-- Introduction -->
+                <li><a href="#introduction" class="nav-link">📘 Introduction</a></li>
+
+                <!-- Emergent Intelligence -->
+                <li>
+                    <button class="accordion-toggle" data-target="accordion-emergent">
+                        🧠 Emergent Intelligence <span class="arrow">▶</span>
+                    </button>
+                    <div id="accordion-emergent" class="accordion-content">
+                        <a href="#emergent-overview" class="nav-link">Overview & Abstract</a>
+                        <a href="#emergent-pillars" class="nav-link">Three Pillars</a>
+                        <a href="#emergent-relational-cot" class="nav-link">Relational Chain-of-Thought</a>
+                        <a href="#emergent-files" class="nav-link">Files & Links</a>
+                    </div>
+                </li>
+
+                <!-- Green AI Practitioner Guide -->
+                <li>
+                    <button class="accordion-toggle" data-target="accordion-green">
+                        🌱 Green AI Guide <span class="arrow">▶</span>
+                    </button>
+                    <div id="accordion-green" class="accordion-content">
+                        <a href="#green-overview" class="nav-link">Overview & Abstract</a>
+                        <a href="#green-decoder" class="nav-link">Relational Decoder</a>
+                        <a href="#green-ror" class="nav-link">Relational Overhead Ratio</a>
+                        <a href="#green-files" class="nav-link">Files & Links</a>
+                    </div>
+                </li>
+
+                <!-- Quantum Machine Learning -->
+                <li>
+                    <button class="accordion-toggle" data-target="accordion-quantum">
+                        ⚛️ Quantum ML <span class="arrow">▶</span>
+                    </button>
+                    <div id="accordion-quantum" class="accordion-content">
+                        <a href="#quantum-overview" class="nav-link">Overview & Abstract</a>
+                        <a href="#quantum-method" class="nav-link">Information-Theoretic Method</a>
+                        <a href="#quantum-results" class="nav-link">Results (H₂ → LiH)</a>
+                        <a href="#quantum-files" class="nav-link">Files & Links</a>
+                    </div>
+                </li>
+
+                <!-- Relational Calculus -->
+                <li>
+                    <button class="accordion-toggle" data-target="accordion-relational">
+                        🔬 Relational Calculus <span class="arrow">▶</span>
+                    </button>
+                    <div id="accordion-relational" class="accordion-content">
+                        <a href="#relational-core" class="nav-link">Core Implementation</a>
+                        <a href="#relational-losses" class="nav-link">Loss Functions (PyTorch)</a>
+                        <a href="#relational-white-paper" class="nav-link">White Paper</a>
+                        <a href="#relational-files" class="nav-link">Files & Links</a>
+                    </div>
+                </li>
+
+                <!-- Relational Lidar -->
+                <li>
+                    <button class="accordion-toggle" data-target="accordion-lidar">
+                        🚗 Relational LiDAR <span class="arrow">▶</span>
+                    </button>
+                    <div id="accordion-lidar" class="accordion-content">
+                        <a href="#lidar-overview" class="nav-link">Overview</a>
+                        <a href="#lidar-demo" class="nav-link">Demonstration</a>
+                        <a href="#lidar-results" class="nav-link">Results</a>
+                        <a href="#lidar-files" class="nav-link">Files & Links</a>
+                    </div>
+                </li>
+
+                <!-- RNA Sequencing -->
+                <li>
+                    <button class="accordion-toggle" data-target="accordion-rna">
+                        🧬 RNA Sequencing <span class="arrow">▶</span>
+                    </button>
+                    <div id="accordion-rna" class="accordion-content">
+                        <a href="#rna-overview" class="nav-link">Overview & Abstract</a>
+                        <a href="#rna-method" class="nav-link">Method</a>
+                        <a href="#rna-results" class="nav-link">Results</a>
+                        <a href="#rna-files" class="nav-link">Files & Links</a>
+                    </div>
+                </li>
+
+                <!-- Use Cases -->
+                <li>
+                    <button class="accordion-toggle" data-target="accordion-usecases">
+                        📂 Use Cases <span class="arrow">▶</span>
+                    </button>
+                    <div id="accordion-usecases" class="accordion-content">
+                        <a href="#usecase-core" class="nav-link">1. Core Architecture</a>
+                        <a href="#usecase-physics" class="nav-link">2. Fluid Dynamics</a>
+                        <a href="#usecase-robotics" class="nav-link">3. Hardware & Robotics</a>
+                        <a href="#usecase-vision" class="nav-link">4. Computer Vision</a>
+                        <a href="#usecase-nlp" class="nav-link">5. Enterprise NLP &amp; RAG</a>
+                        <a href="#usecase-hep" class="nav-link">6. High-Energy Physics</a>
+                        <a href="#usecase-quantum-chem" class="nav-link">7. Quantum Chemistry</a>
+                        <a href="#usecase-oncology" class="nav-link">8. Precision Oncology</a>
+                    </div>
+                </li>
             </ul>
         </nav>
     </aside>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
     <main class="main">
+
+        <!-- INTRODUCTION -->
         <section id="introduction">
-            <h1>Relational Loss ML</h1>
+            <h1>Relational Calculus Framework</h1>
             <p>
-                An innovative framework for loss functions based on <strong>relational calculus</strong>.
-                It overcomes the limitations of pointwise metrics (MAE, MSE, Huber) by introducing a notion of
-                <em>relation</em> between predictions and targets, improving robustness, interpretability, and
-                generalization in machine learning models.
+                <strong>Scale-Invariant Deep Learning &mdash; Train Bigger Models on Less Hardware.</strong>
+                Replace absolute-value targets with dimensionless ratios anchored to the system's
+                intrinsic maximum capacity. The loss landscape becomes perfectly spherical, training
+                converges exponentially faster, and models generalize across scales without retraining.
             </p>
             <p>
                 <span class="badge">PyTorch</span>
-                <span class="badge">Data Drift Immunity</span>
-                <span class="badge">Open Source</span>
+                <span class="badge">XGBoost</span>
+                <span class="badge">Scale-Invariant</span>
+                <span class="badge">Zero-Shot Transfer</span>
             </p>
-            <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML" target="_blank">GitHub Repository</a> |
-            <a href="https://colab.research.google.com/drive/1m24qjaG__EKHKlzVyN5Vv3FazGknJb5i?usp=sharing" target="_blank">Colab Notebook</a>
+            <p>
+                📄 <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML" target="_blank">GitHub Repository</a> &nbsp;|&nbsp;
+                📓 <a href="https://colab.research.google.com/drive/1q9yIJpYAHJR1VveZsp4Z90Kh15PC-8o9" target="_blank">Colab Notebook</a> &nbsp;|&nbsp;
+                📦 <a href="https://pypi.org/project/relational-calculus/" target="_blank">PyPI Package</a>
+            </p>
+            <table class="metric-table">
+                <thead>
+                    <tr><th>Metric</th><th>Traditional Absolute Loss</th><th>Relational Loss</th><th>Improvement</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Zero-Shot Transfer (MSE)</td><td>805.45 m² (Failed)</td><td><strong>0.012 m²</strong></td><td>Zero-Shot Achieved</td></tr>
+                    <tr><td>Hessian Condition Number</td><td>1.60×10⁹ (Ill-conditioned)</td><td><strong>1.00×10²</strong></td><td>16,000,000× Better</td></tr>
+                    <tr><td>Gradient Descent Iterations</td><td>~276,310</td><td><strong>~69</strong></td><td>4,000× Speedup</td></tr>
+                    <tr><td>Model Size (Parameters)</td><td>20</td><td><strong>5</strong></td><td>4× Smaller</td></tr>
+                </tbody>
+            </table>
         </section>
 
-        <section id="relational-calculus">
-            <h2>Relational Calculus</h2>
+        <!-- ========== EMERGENT INTELLIGENCE ========== -->
+        <section id="emergent-overview">
+            <h2>🧠 Emergent Intelligence</h2>
             <p>
-                Relational loss measures not only the absolute error but also the <strong>structural coherence</strong>
-                between prediction and ground truth. It uses logical operators (AND, OR, XOR) defined
-                on differences to capture patterns that traditional metrics miss.
+                <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/emergent_intelligence" target="_blank" class="paper-link">📁 Folder</a>
+                <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/emergent_intelligence/emergent_paper_draft.md" target="_blank" class="paper-link">📄 Paper</a>
             </p>
-            <h3>Definition</h3>
-            <p>Given a tuple <code>(y_pred, y_true)</code>, the relation <em>R</em> evaluates:</p>
+            <p>
+                <strong>"Constraints That Compute: A Unified Framework for Efficient Intelligence from Prime Harmonics to Latent Reasoning"</strong>
+                — Massimiliano Concas, April 29, 2026.
+            </p>
+            <p>
+                A domain-agnostic framework translating systems into intrinsic, dimensionless geometries,
+                systematically replacing brute-force computation with structural efficiency.
+                The central thesis: <strong>intelligent, transferable behavior emerges not by adding more
+                data or parameters, but by imposing the correct internal constraints.</strong>
+            </p>
+        </section>
+
+        <section id="emergent-pillars">
+            <h3>Three Foundational Pillars</h3>
+            <ol>
+                <li><strong>Prime Harmonics:</strong> 99% of twin and cousin primes lie within a tight modular lattice, proving deterministic constraints govern local prime architecture.</li>
+                <li><strong>Constraint-Driven Chess Engine:</strong> A purely geometric engine (no opening books, no human heuristics) exhibits strategic play by maximizing a single relational metric.</li>
+                <li><strong>Zero-Shot Jet Tagging (HEP):</strong> Absolute kinematic variables → relational momentum fractions. Lightweight XGBoost achieves AUC 0.9564, outperforming absolute model by +14.5%.</li>
+            </ol>
+        </section>
+
+        <section id="emergent-relational-cot">
+            <h3>Relational Chain-of-Thought (Relational-CoT)</h3>
+            <p>
+                The paper critiques Abstract-CoT and proposes <strong>Relational-CoT</strong>, a protocol
+                replacing random abstract vocabularies with a structurally anchored Relational Codebook,
+                eliminating verbal teachers through a Relational Attention Mask, and bypassing
+                million-episode RL via Geometric Constrained Decoding.
+            </p>
+        </section>
+
+        <section id="emergent-files">
+            <h3>Files</h3>
             <ul>
-                <li><strong>Pure agreement</strong>: both close to zero → low loss</li>
-                <li><strong>Strong disagreement</strong>: one positive, the other negative → high loss</li>
-                <li><strong>Moderate disproportions</strong>: adaptive behaviour similar to Huber but with logical thresholds</li>
+                <li><a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/emergent_intelligence/emergent_paper_draft.md" target="_blank">emergent_paper_draft.md</a> — Full paper (420 lines)</li>
             </ul>
         </section>
 
-        <section id="acid-test">
-            <h2>Acid Test – Comparison with classical metrics</h2>
+        <!-- ========== GREEN AI PRACTITIONER GUIDE ========== -->
+        <section id="green-overview">
+            <h2>🌱 Green AI Practitioner Guide</h2>
+            <p>
+                <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/green_AI_practitioner_guide" target="_blank" class="paper-link">📁 Folder</a>
+                <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/green_AI_practitioner_guide/GREEN_AI_PAPER.md" target="_blank" class="paper-link">📄 Paper</a>
+            </p>
+            <p>
+                <strong>"The Intrinsic Blueprint: A Practitioner's Guide to Relational Calculus and Green AI"</strong>
+                — Massimiliano Concas, May 2, 2026.
+            </p>
+            <p>
+                Operationalizes the relational paradigm, providing a universal, domain-agnostic methodology
+                to transition from computationally expensive quantitative exploration to instantaneous geometric revelation.
+            </p>
+        </section>
+
+        <section id="green-decoder">
+            <h3>Relational Decoder</h3>
+            <p>
+                An open-source, executable algorithm (<code>relational_decoder.py</code>) capable of automatically
+                extracting the dimensionless blueprint of any black-box system or mathematical model without
+                prior physical assumptions. Covers step-by-step protocols from classical physics (projectile kinematics,
+                Greenshields traffic flow) to frontier ML.
+            </p>
+        </section>
+
+        <section id="green-ror">
+            <h3>Relational Overhead Ratio (ROR)</h3>
+            <p>
+                A new metric quantifying compute wasted on learning instrument noise vs. intrinsic signal.
+                Relational pre-processing mathematically eradicates sensor-induced batch effects, enabling
+                <strong>98.4% cross-species, zero-shot accuracy</strong> in single-cell oncology with lightweight XGBoost.
+            </p>
+        </section>
+
+        <section id="green-files">
+            <h3>Files</h3>
+            <ul>
+                <li><a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/green_AI_practitioner_guide/GREEN_AI_PAPER.md" target="_blank">GREEN_AI_PAPER.md</a> — Complete guide</li>
+                <li><a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/green_AI_practitioner_guide/relational_decoder.py" target="_blank">relational_decoder.py</a> — Implementation</li>
+            </ul>
+        </section>
+
+        <!-- ========== QUANTUM MACHINE LEARNING ========== -->
+        <section id="quantum-overview">
+            <h2>⚛️ Quantum Machine Learning</h2>
+            <p>
+                <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/quantum_machine_learning" target="_blank" class="paper-link">📁 Folder</a>
+                <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/quantum_machine_learning/quantum_ML_paper.md" target="_blank" class="paper-link">📄 Paper</a>
+            </p>
+            <p>
+                <strong>"Scale-Invariant Quantum Machine Learning: Zero-Shot Transfer Across Molecular Dimensions via Information-Theoretic Relational Calculus"</strong>
+                — Massimiliano Concas, April 28, 2026.
+            </p>
+            <p>
+                Addresses the Out-Of-Distribution (OOD) generalization crisis in Quantum ML. Traditional
+                models overfit to absolute energy scales (Hartrees), collapsing when tested on larger molecules.
+                The relational method defines <strong>Global Capacity</strong> as the linear sum of isolated
+                ground-state energies of constituent atoms, projecting interactions into a dimensionless,
+                scale-invariant phase space.
+            </p>
+        </section>
+
+        <section id="quantum-method">
+            <h3>Information-Theoretic Method</h3>
+            <p>
+                Instead of modeling absolute scalar magnitudes, the algorithm learns the universal geometric
+                proportion of informational loss during bond formation. Trained strictly on <strong>H₂ dissociation
+                curve</strong> and evaluated zero-shot on <strong>LiH</strong>.
+            </p>
+        </section>
+
+        <section id="quantum-results">
+            <h3>Results</h3>
+            <ul>
+                <li><strong>80.0% reduction</strong> in absolute zero-shot prediction error vs. classical Z-score standardization.</li>
+                <li>Lightweight XGBoost (gradient-boosted decision tree) — no deep neural architectures required.</li>
+                <li>Effectively neutralizes the nuclear screening effect.</li>
+            </ul>
+        </section>
+
+        <section id="quantum-files">
+            <h3>Files</h3>
+            <ul>
+                <li><a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/quantum_machine_learning/quantum_ML_paper.md" target="_blank">quantum_ML_paper.md</a></li>
+                <li><a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/quantum_machine_learning/relational_xgboost_vqe.py" target="_blank">relational_xgboost_vqe.py</a></li>
+                <li><a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/quantum_machine_learning/dataset_generator.py" target="_blank">dataset_generator.py</a></li>
+            </ul>
+        </section>
+
+        <!-- ========== RELATIONAL CALCULUS ========== -->
+        <section id="relational-core">
+            <h2>🔬 Relational Calculus — Core Implementation</h2>
+            <p>
+                <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/relational_calculus" target="_blank" class="paper-link">📁 Folder</a>
+            </p>
+            <p>
+                The foundational PyTorch module providing drop-in replacement loss functions that transform
+                standard absolute targets into dimensionless relational ratios anchored to the system's
+                intrinsic capacity (<em>North Star</em>).
+            </p>
+        </section>
+
+        <section id="relational-losses">
+            <h3>Loss Functions</h3>
+            <p><strong>RelationalMSELoss</strong> — Relational Mean Squared Error. Transforms absolute targets into dimensionless ratios before computing MSE. Eliminates environmental scale entropy, prevents exploding gradients, and perfectly conditions the Hessian.</p>
+            <pre><code class="language-python">import torch
+from relational_calculus.losses import RelationalMSELoss
+
+criterion = RelationalMSELoss()
+# pred_ratio: model output in [0,1] (e.g., via Sigmoid)
+# target_absolute: raw values in human/environmental units
+# capacity: intrinsic theoretical maximum (North Star) per sample
+loss = criterion(pred_ratio, target_absolute, capacity)</code></pre>
+            <p><strong>RelationalCrossEntropyLoss</strong> — Binary Cross Entropy with Logits for continuous physical/relational ratios bounded in [0,1].</p>
+            <pre><code class="language-python">from relational_calculus.losses import RelationalCrossEntropyLoss
+
+criterion = RelationalCrossEntropyLoss()
+loss = criterion(pred_logits, target_absolute, capacity)</code></pre>
+        </section>
+
+        <section id="relational-white-paper">
+            <h3>White Paper</h3>
+            <p>
+                <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/WHITE_PAPER.md" target="_blank" class="paper-link">📄 WHITE_PAPER.md</a>
+                <strong>"The Intrinsic Blueprint: An Introduction to Relational Calculus"</strong> (v3.0, April 2026).
+                Formal meta-mathematical framework bridging continuous dynamic systems and neural learning targets
+                into pure relational geometries. Case studies: traffic flow, battery electrochemistry, epidemic spread.
+            </p>
+        </section>
+
+        <section id="relational-files">
+            <h3>Files</h3>
+            <ul>
+                <li><a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/relational_calculus/losses.py" target="_blank">losses.py</a> — RelationalMSELoss, RelationalCrossEntropyLoss</li>
+                <li><a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/relational_calculus/__init__.py" target="_blank">__init__.py</a></li>
+                <li><a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/WHITE_PAPER.md" target="_blank">WHITE_PAPER.md</a> — Full theoretical foundations</li>
+                <li><a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/tests/test_losses.py" target="_blank">tests/test_losses.py</a> — Unit tests</li>
+            </ul>
+        </section>
+
+        <!-- ========== RELATIONAL LIDAR ========== -->
+        <section id="lidar-overview">
+            <h2>🚗 Relational LiDAR — Zero-Shot Cross-Sensor Detection</h2>
+            <p>
+                <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/relational_lidar" target="_blank" class="paper-link">📁 Folder</a>
+                <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/relational_lidar/README.md" target="_blank" class="paper-link">📄 README</a>
+            </p>
+            <p>
+                Self-contained Python demonstration applying Relational Calculus to LiDAR perception.
+                Proves that a simple XGBoost classifier trained on high-resolution LiDAR instantly transfers
+                to low-resolution LiDAR with <strong>&gt;95% accuracy</strong> — without retraining or domain adaptation.
+            </p>
+            <p>
+                The same mathematical principle achieved <strong>98.4% cross-species zero-shot accuracy</strong>
+                in single-cell transcriptomics, demonstrating domain-agnostic applicability.
+            </p>
+        </section>
+
+        <section id="lidar-demo">
+            <h3>Demonstration Scenario</h3>
+            <ul>
+                <li><strong>Training:</strong> High-resolution LiDAR (gain = 1.0, dense beam).</li>
+                <li><strong>Zero-shot test:</strong> Low-resolution LiDAR (gain = 0.3, 70% hardware degradation).</li>
+                <li><strong>Task:</strong> Detect dangerous objects (reflectivity &gt; 0.7).</li>
+                <li><strong>Global Capacity:</strong> Local ground intensity at same distance — cancels sensor gain and distance effects.</li>
+            </ul>
+        </section>
+
+        <section id="lidar-results">
+            <h3>Results</h3>
             <table class="metric-table">
                 <thead>
-                    <tr><th>Metric</th><th>Outlier robustness</th><th>Informative gradient</th><th>Data Drift Resilience</th></tr>
+                    <tr><th>Model</th><th>Accuracy</th><th>Dangerous Recall</th><th>Dangerous Precision</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td>MAE</td><td>Medium</td><td>Low (constant)</td><td>Poor</td></tr>
-                    <tr><td>MSE</td><td>Low</td><td>High (linear)</td><td>Poor</td></tr>
-                    <tr><td>Huber</td><td>High</td><td>Medium</td><td>Medium</td></tr>
-                    <tr><td><strong>Relational Loss</strong></td><td><strong>Very high</strong></td><td><strong>Adaptive (logical)</strong></td><td><strong>Excellent</strong></td></tr>
+                    <tr><td>Absolute features</td><td>70.6%</td><td>0%</td><td>0%</td></tr>
+                    <tr><td><strong>Relational features</strong></td><td><strong>95.2%</strong></td><td><strong>90.5%</strong></td><td><strong>93.0%</strong></td></tr>
                 </tbody>
             </table>
             <p>
-                In tests with impulsive noise and distribution drift, Relational Loss showed
-                an error reduction of 18-25% compared to Huber on both synthetic and real datasets (RNA-seq).
+                Absolute model collapses completely (predicts "innocuous" for every object).
+                Relational model, trained on dimensionless topology, generalizes immediately.
             </p>
         </section>
 
-        <section id="killer-feature">
-            <h2>Killer Feature: immunity to Data Drift</h2>
+        <section id="lidar-files">
+            <h3>Files</h3>
+            <ul>
+                <li><a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/relational_lidar/README.md" target="_blank">README.md</a></li>
+                <li><a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/relational_lidar/lidar_relational_demo.py" target="_blank">lidar_relational_demo.py</a></li>
+            </ul>
+        </section>
+
+        <!-- ========== RNA SEQUENCING ========== -->
+        <section id="rna-overview">
+            <h2>🧬 RNA Sequencing — Cross-Species Zero-Shot Oncology</h2>
             <p>
-                Unlike pointwise metrics, Relational Loss remains stable when the data distribution
-                changes over time, thanks to its topological nature. This makes it ideal for
-                production environments, environmental monitoring, finance, and bioinformatics.
+                <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/rna_sequencing" target="_blank" class="paper-link">📁 Folder</a>
+                <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/rna_sequencing/relational_RNA_paper.md" target="_blank" class="paper-link">📄 Paper</a>
             </p>
-        </section>
-
-        <section id="installation">
-            <h2>Installation</h2>
-            <pre><code class="language-bash">pip install git+https://github.com/massimilianoconcas0-del/Relational_Loss_ML.git</code></pre>
-            <p>Or clone the repository and install locally:</p>
-            <pre><code class="language-bash">git clone https://github.com/massimilianoconcas0-del/Relational_Loss_ML.git
-cd Relational_Loss_ML
-pip install -r requirements.txt</code></pre>
-        </section>
-
-        <section id="code-examples">
-            <h2>Code Examples</h2>
-            <h3>Basic usage in PyTorch</h3>
-            <pre><code class="language-python">import torch
-from relational_calculus.losses import RelationalLoss
-
-criterion = RelationalLoss(threshold=0.5, mode='logical_and')
-y_pred = torch.tensor([0.8, -0.2, 1.5], requires_grad=True)
-y_true = torch.tensor([0.9, 0.0, 1.0])
-loss = criterion(y_pred, y_true)
-loss.backward()
-print(loss.item())</code></pre>
-            <h3>Integration in a training loop</h3>
-            <pre><code class="language-python">model = YourModel()
-optimizer = torch.optim.Adam(model.parameters())
-for epoch in range(epochs):
-    for batch in dataloader:
-        preds = model(batch)
-        loss = RelationalLoss()(preds, batch.targets)
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()</code></pre>
-            <p>For full examples and interactive demos, check the <a href="https://colab.research.google.com/drive/1m24qjaG__EKHKlzVyN5Vv3FazGknJb5i?usp=sharing" target="_blank">Colab notebook</a>.</p>
-        </section>
-
-        <section id="use-cases">
-    <h2>Use Cases (from the White Paper)</h2>
-    <ul>
-        <li>
-            <strong>RNA Sequencing</strong>: 
-            <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/rna_sequencing" target="_blank">rna_sequencing</a> – 
-            robust differential analysis resilient to biological outliers.
-        </li>
-        <li>
-            <strong>Relational LIDAR</strong>: 
-            <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/relational_lidar" target="_blank">relational_lidar</a> – 
-            point cloud segmentation with spatial coherence.
-        </li>
-        <li>
-            <strong>Quantum ML</strong>: 
-            <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/quantum_machine_learning" target="_blank">quantum_machine_learning</a> – 
-            hybrid circuits with relational loss for entangled states.
-        </li>
-        <li>
-            <strong>Green AI</strong>: 
-            <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/green_AI_practitioner_guide" target="_blank">green_AI_practitioner_guide</a> – 
-            efficient training with fewer epochs thanks to informative gradients.
-        </li>
-        <li>
-            <strong>Emergent Intelligence</strong>: 
-            <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/emergent_intelligence" target="_blank">emergent_intelligence</a> – 
-            multi-agent models developing symbolic coordination languages.
-        </li>
-    </ul>
-</section>
-
-        <section id="white-paper">
-            <h2>White Paper</h2>
             <p>
-                The full white paper explores the theoretical foundations, mathematical proofs, and
-                additional experiments. Download or read it on GitHub:
-                <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/WHITE_PAPER.md" target="_blank">WHITE_PAPER.md</a>.
+                <strong>"Scale-Invariant Single-Cell Transcriptomics: Eradicating Batch Effects and Enabling Cross-Species Zero-Shot Oncology via Relational Calculus"</strong>
+                — Massimiliano Concas, April 28, 2026.
+            </p>
+            <p>
+                The batch effect — systematic technical variation across sequencing platforms, depths, and species —
+                causes catastrophic predictive collapse in OOD scenarios. Standard absolute models yield massive
+                false-negative rates. This work demonstrates that batch effects are an ontological error in data
+                representation, not a noise problem.
             </p>
         </section>
 
-        <section id="license">
-            <h2>License</h2>
-            <p>MIT License – see the <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/LICENSE" target="_blank">LICENSE</a> file.</p>
+        <section id="rna-method">
+            <h3>Method</h3>
+            <ul>
+                <li><strong>Global Capacity:</strong> Isolated Informational Potential — cumulative expression of core housekeeping genes.</li>
+                <li><strong>Relational Features:</strong> Oncogenic drivers (<em>MYC</em>, <em>ERBB2</em>) mapped as scale-invariant, dimensionless fractions.</li>
+                <li><strong>Model:</strong> Lightweight XGBoost trained exclusively on murine breast cancer (MMTV-PyMT), tested zero-shot on human TNBC atlas.</li>
+            </ul>
         </section>
+
+        <section id="rna-results">
+            <h3>Results</h3>
+            <ul>
+                <li><strong>Classical absolute model:</strong> Missed 64% of malignant cells (22,707 false negatives) under 70% covariate shift.</li>
+                <li><strong>Relational Framework:</strong> <strong>98.4% diagnostic accuracy</strong>, recovered 33,800+ malignant cells undetected by standard metrics.</li>
+                <li>Universal Relational Imbalance Index (ρ) for predicting therapeutic vulnerabilities.</li>
+            </ul>
+        </section>
+
+        <section id="rna-files">
+            <h3>Files</h3>
+            <ul>
+                <li><a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/rna_sequencing/relational_RNA_paper.md" target="_blank">relational_RNA_paper.md</a></li>
+                <li><a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/rna_sequencing/zeroshot_cross_species.py" target="_blank">zeroshot_cross_species.py</a></li>
+                <li><a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/rna_sequencing/relational_preprocessing.py" target="_blank">relational_preprocessing.py</a></li>
+                <li><a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/rna_sequencing/human_relational_dataset.csv" target="_blank">human_relational_dataset.csv</a></li>
+                <li><a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/rna_sequencing/mouse_relational_dataset.csv" target="_blank">mouse_relational_dataset.csv</a></li>
+                <li><a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/rna_sequencing/the_emergent_checker.pdf" target="_blank">the_emergent_checker.pdf</a></li>
+            </ul>
+        </section>
+
+        <!-- ========== USE CASES ========== -->
+        <section id="usecase-core">
+            <h2>📂 Use Cases</h2>
+            <p>Concrete applications of the Relational Calculus framework across diverse domains. Each directory contains self-contained Python demonstrations.</p>
+
+            <h3>1. Core Architecture — <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/use_examples/1_core_architecture" target="_blank">📁 Folder</a></h3>
+            <p>Proves three fundamental theorems of Relational Deep Learning:</p>
+            <ul>
+                <li><strong>Mathematical Superiority:</strong> Relational targets avoid Dying ReLU collapse.</li>
+                <li><strong>Algorithmic Independence:</strong> Pure SGD converges without Adam.</li>
+                <li><strong>Architectural Agnosticism:</strong> Works identically on MLPs and Transformers.</li>
+            </ul>
+            <p>Scripts: <code>relational_efficiency_demo.py</code>, <code>implicit_vs_explicit_fraction.py</code>, <code>transformer_relational_demo.py</code></p>
+        </section>
+
+        <section id="usecase-physics">
+            <h3>2. Fluid Dynamics — <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/use_examples/2_physics_and_continuous_systems" target="_blank">📁 Folder</a></h3>
+            <p><strong>Drag Force Prediction:</strong> Buckingham's π theorem injected into the loss function. Absolute model collapse (10¹⁴ MSE) vs. relational model <strong>13,484× improvement</strong> on zero-shot scale transfer.</p>
+            <p><strong>Rainfall Prediction:</strong> Relational capacity bounding cures curse of dimensionality.</p>
+            <p>Scripts: <code>fluid_dynamics_reynolds.py</code>, <code>rainfall_relational_demo.py</code></p>
+        </section>
+
+        <section id="usecase-robotics">
+            <h3>3. Hardware &amp; Robotics — <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/use_examples/3_robotics_and_vision" target="_blank">📁 Folder</a></h3>
+            <p><strong>Sim2Real Transfer:</strong> Drone flight controller trained on 1kg drone transfers to 50kg drone. Network predicts Thrust-to-Weight Ratio [0,1] instead of Newtons. <strong>8,900× lower MSE</strong>.</p>
+            <p>Script: <code>robotics_zero_shots.py</code></p>
+        </section>
+
+        <section id="usecase-vision">
+            <h3>4. Computer Vision — <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/use_examples/3_robotics_and_vision" target="_blank">📁 Folder</a></h3>
+            <p><strong>HDR Inverse Rendering:</strong> Decouples light source from material. Network predicts Intrinsic Albedo (Reflectance Ratio [0,1]) instead of RGB [0-255]. <strong>153× improvement</strong> in rendering accuracy across candle to midday sun.</p>
+            <p>Script: <code>vision_hdr_inverse_rendering.py</code></p>
+        </section>
+
+        <section id="usecase-nlp">
+            <h3>5. Enterprise NLP &amp; RAG — <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/use_examples/nlp_and_enterprise_ai" target="_blank">📁 Folder</a></h3>
+            <p><strong>Ollama Local Tuning:</strong> Relational Loss stabilizes gradient flow for CPU-based fine-tuning with pure SGD.</p>
+            <p><strong>Relational RAG (Dynamic Inflation):</strong> Model trained on 2015 housing data adapts zero-shot to 10× market inflation. Retrieves current market context as "Dynamic North Star."</p>
+            <p>Scripts: <code>nlp_relational_demo.py</code>, <code>ollama_convergence_curve.py</code>, <code>generate_rag_dataset.py</code>, <code>rag_dynamic_inflation.py</code></p>
+        </section>
+
+        <section id="usecase-hep">
+            <h3>6. High-Energy Physics (Jet Tagging) — <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/use_examples/hep" target="_blank">📁 Folder</a></h3>
+            <p>
+                <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/blob/main/use_examples/hep/hpe_paper.md" target="_blank" class="paper-link">📄 Paper</a>
+                Top Quark Tagging with zero-shot transfer across collision energies. Lorentz-invariant phase space via Jet Invariant Mass and relational pT fractions. <strong>AUC 0.9564 vs. 0.8109 (absolute)</strong> — +14.5% improvement.
+            </p>
+            <p>Script: <code>xr_zero_shot.py</code></p>
+        </section>
+
+        <section id="usecase-quantum-chem">
+            <h3>7. Quantum Chemistry — <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/quantum_machine_learning" target="_blank">📁 Folder</a></h3>
+            <p>H₂ → LiH zero-shot transfer. Information-theoretic Global Capacity (sum of isolated atomic ground-state energies). <strong>80% error reduction</strong> vs. Z-score standardization.</p>
+            <p>Script: <code>relational_xgboost_vqe.py</code>, <code>dataset_generator.py</code></p>
+        </section>
+
+        <section id="usecase-oncology">
+            <h3>8. Precision Oncology (scRNA-seq) — <a href="https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/rna_sequencing" target="_blank">📁 Folder</a></h3>
+            <p>Cross-species zero-shot transfer (mouse → human). <strong>98.4% diagnostic accuracy</strong> under 70% covariate shift. Classical model: 22,707 false negatives; Relational: 33,800+ malignant cells recovered.</p>
+            <p>Script: <code>zeroshot_cross_species.py</code>, <code>relational_preprocessing.py</code></p>
+        </section>
+
         <hr>
         <p style="text-align: center; color: #5f6368; font-size: 0.9rem;">
-            &copy; 2025 Relational Loss ML – Created by Massimiliano Concas
+            &copy; 2025 Relational Calculus Framework — Created by Massimiliano Concas
         </p>
     </main>
 
+    <!-- ==================== SCRIPTS ==================== -->
     <script>
-        // Smooth scrolling for anchor links
+        // Accordion toggle
+        document.querySelectorAll('.accordion-toggle').forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const content = document.getElementById(targetId);
+                const isOpen = content.classList.contains('open');
+                // Close all accordions
+                document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
+                document.querySelectorAll('.accordion-toggle').forEach(b => b.classList.remove('open'));
+                // Open clicked one
+                if (!isOpen) {
+                    content.classList.add('open');
+                    this.classList.add('open');
+                }
+            });
+        });
+
+        // Smooth scrolling for all anchor links (nav-link + accordion links)
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -384,7 +736,6 @@ for epoch in range(epochs):
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth' });
                 }
-                // Close mobile sidebar if open
                 document.querySelector('.sidebar').classList.remove('open');
             });
         });
@@ -395,7 +746,7 @@ for epoch in range(epochs):
             const navLinks = document.querySelectorAll('.nav-link');
             let current = '';
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
+                const sectionTop = section.offsetTop - 120;
                 if (pageYOffset >= sectionTop) {
                     current = section.getAttribute('id');
                 }
