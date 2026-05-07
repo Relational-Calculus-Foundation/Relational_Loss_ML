@@ -270,12 +270,18 @@
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
-        displayMath: [['$$','$$'], ['\\[','\\]']],
+        displayMath: [['$$','$$'], '\\[','\\]'],
         processEscapes: true
       }
     });
   </script>
   <script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <!-- Mermaid -->
+  <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: false });
+  </script>
 </head>
 <body>
   <div id="app">Loading...</div>
@@ -312,9 +318,27 @@
         '/examples/tabular': '/modules/use_examples_tabular_data_xgboost.md'
       },
 
+      markdown: {
+        renderer: {
+          code: function(code, lang) {
+            if (lang === "mermaid") {
+              return (
+                '<div class="mermaid">' + code + "</div>"
+              );
+            }
+            return this.origin.code.apply(this, arguments);
+          }
+        }
+      },
+
       plugins: [
         function(hook, vm) {
           hook.doneEach(function() {
+            // Render Mermaid
+            if (typeof mermaid !== 'undefined') {
+              mermaid.init(undefined, '.mermaid');
+            }
+
             // Remove existing card if any
             const existing = document.querySelector('.lab-card-container');
             if (existing) existing.remove();

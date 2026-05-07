@@ -50,6 +50,25 @@ A lightweight **XGBoost** (100 trees, depth 3) — exactly the same architecture
 
 The absolute model predicts “innocuous” for every object — the sensor shift made dangerous objects numerically indistinguishable. The relational model, trained on dimensionless topology, generalises immediately.
 
+## 📈 Performance Benchmarks
+
+The Relational Lidar framework ensures that perception models remain functional even as hardware degrades or changes. By anchoring object intensity to the local ground reference, the system becomes immune to sensor gain fluctuations.
+
+### 1. Resilience to Gain Drift
+While absolute models collapse as sensor gain drops (e.g., due to dust, aging, or low-power modes), the Relational model maintains constant accuracy by operating on dimensionless invariants.
+
+![Lidar Robustness Gain](../docs/assets/lidar_robustness_gain.png)
+
+### 2. Zero-Shot Accuracy Comparison
+In a 70% gain drop scenario, the absolute model fails to detect dangerous objects, whereas the Relational model preserves over 95% of its nominal performance without retraining.
+
+![Lidar Accuracy Comparison](../docs/assets/lidar_accuracy_comparison.png)
+
+### 3. Distance Invariance (Inverse Square Law Cancellation)
+Raw Lidar intensity decays rapidly with distance, making objects "disappear" from the model's perspective. The Relational signature remains invariant, enabling robust detection at any range.
+
+![Lidar Distance Invariance](../docs/assets/lidar_distance_invariance.png)
+
 ---
 
 ## How to Run

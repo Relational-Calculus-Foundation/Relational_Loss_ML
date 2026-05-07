@@ -25,5 +25,11 @@ The included **[GREEN_AI_PAPER.md](./GREEN_AI_PAPER.md)** is a practitioner's ma
 *   **Stop the Brute-Force**: Don't run a 1,000-point grid search. Use the Relational Decoder to find the master equation from a few strategic measurements.
 *   **STEM Reform**: This guide includes a vision for a STEM curriculum that teaches relational intuition *before* continuous calculus.
 
+## 📈 Performance Benchmarks
+
+The Relational Decoder replaces exhaustive grid-search (O(N^d)) with smart univariate probing (O(N*d)), drastically reducing the computational energy required to discover system dynamics. The filled region represents pure computational waste eliminated by the framework.
+
+![Green AI Efficiency](../docs/assets/green_ai_efficiency.png)
+
 ---
 *For the full ethical and technical framework, read [GREEN_AI_PAPER.md](./GREEN_AI_PAPER.md). To start decoding your own systems, run `python relational_decoder.py`.*

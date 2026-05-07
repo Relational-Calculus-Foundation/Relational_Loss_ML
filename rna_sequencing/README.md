@@ -25,7 +25,27 @@ The included **[relational_RNA_paper.md](./relational_RNA_paper.md)** explains h
 
 1.  **Stop Algorithmic Integration**: Don't use heavy autoencoders (like scVI) to warp your data. Align the ontology first by using the cell's own internal measuring stick.
 2.  **Cross-Species Immunity**: The relational fraction of an oncogene is a universal biophysical property that transcends the Mouse-Human divide.
-3.  **Green Oncology AI**: Run clinical-grade diagnostics on a standard laptop using lightweight XGBoost instead of massive GPU clusters.
+1.  **Green Oncology AI**: Run clinical-grade diagnostics on a standard laptop using lightweight XGBoost instead of massive GPU clusters.
+
+## 📈 Performance Benchmarks
+
+The Relational Calculus framework provides a mathematical solution to the **Batch Effect**. By expressing gene expression as a fraction of the cell's total housekeeping capacity, we achieve a stable, species-invariant representation of oncology.
+
+### 1. Resilience to Sequencing Depth Collapse
+While absolute models fail as sequencing depth decreases (losing the ability to recognize tumor signatures), the Relational model maintains near-perfect accuracy even in ultra-shallow sequencing conditions.
+
+![RNA Resilience Depth](../docs/assets/rna_resilience_depth.png)
+
+### 2. Zero-Shot Cross-Species Diagnostics
+In a simulated 70% signal collapse (Human TNBC vs Murine Training), the absolute model misses 100% of tumors (collapsing to the majority class), whereas the Relational model preserves high sensitivity and specificity.
+
+![RNA Confusion Matrices](../docs/assets/rna_confusion_matrices.png)
+
+### 3. Dimensional Alignment (Batch Effect Elimination)
+PCA visualization reveals that while absolute counts create distinct clusters for different species/batches (technical noise), the Relational space aligns them perfectly, revealing the shared biological topology.
+
+![RNA PCA Alignment](../docs/assets/rna_pca_alignment.png)
 
 ---
 *For the complete biophysical derivation and diagnostic benchmarks, refer to [relational_RNA_paper.md](./relational_RNA_paper.md). To reproduce the cross-species transfer, run `python zeroshot_cross_species.py`.*
+

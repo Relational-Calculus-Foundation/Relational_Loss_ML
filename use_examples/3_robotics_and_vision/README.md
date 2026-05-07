@@ -38,3 +38,17 @@ Run the robotics or vision demo:
 python robotics_zero_shots.py
 ```
 *(Each script generates a comparison plot showing the 'Scale-Locked' failure of absolute models vs. the 'Scale-Invariant' success of the relational approach).*
+
+## 📈 Performance Benchmarks
+
+In robotics and vision, the ability to generalize across physical scales and environmental lighting is the difference between a functional system and a catastrophic failure.
+
+### 1. Robotics: Zero-Shot Payload Transfer
+When training on a 1kg drone, an absolute model learns a specific thrust force. When moved to a 50kg drone, it fails to lift off. The Relational model learns the universal **Thrust-to-Weight Ratio**, allowing it to fly the heavy drone perfectly without a single line of new code.
+
+![Robotics Drone Stability](../../docs/assets/robotics_drone_stability.png)
+
+### 2. Vision: HDR Material Disentanglement
+Standard vision models bake lighting into their texture predictions, leading to failure under High Dynamic Range (HDR) shifts. The Relational model decouples lighting from material, extracting the **Intrinsic Albedo** with high precision even when the light source is 500x brighter.
+
+![Vision HDR Parity](../../docs/assets/vision_hdr_parity.png)

@@ -1,6 +1,7 @@
 import os
 import shutil
 import json
+import re
 
 # Configuration of modules with their human-friendly info
 MODULES_CONFIG = {
@@ -111,22 +112,28 @@ def count_files(directory):
     
     for root, dirs, files in os.walk(directory):
         for file in files:
-            # 1. Ignore rules
             if file.lower() == "readme.md" or file.lower() == "__init__.py" or file.startswith("."):
                 continue
-            
             ext = os.path.splitext(file)[1].lower()
             name = file.lower()
-            
-            # 2. Priority Logic
             if "paper" in name:
                 stats["papers"] += 1
             elif ext == ".py":
                 stats["scripts"] += 1
             else:
                 stats["others"] += 1
-                
     return stats
+
+def fix_image_paths(content, route):
+    # Calculate depth of the route (e.g., /research/green-ai has depth 2)
+    # Depth 1 -> assets/
+    # Depth 2 -> ../assets/
+    # Depth 3 -> ../../assets/
+    depth = route.count('/') - 1
+    prefix = "../" * depth if depth > 0 else ""
+    
+    # Replaces ![alt](../docs/assets/name.png) or similar with ![alt](prefix + assets/name.png)
+    return re.sub(r'\((\.\.\/)+docs\/assets\/', f'({prefix}assets/', content)
 
 def sync():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -140,17 +147,22 @@ def sync():
     for route, info in MODULES_CONFIG.items():
         src_path = os.path.join(base_dir, info["src_path"])
         
-        # 1. Sync README if applicable
         if info["dest_name"]:
             readme_src = os.path.join(src_path, "README.md")
             readme_dest = os.path.join(target_dir, info["dest_name"])
             if os.path.exists(readme_src):
-                shutil.copy2(readme_src, readme_dest)
-                print(f"[✓] Synced README for {route}")
+                # Read, Fix Paths based on Route Depth, and Write
+                with open(readme_src, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                
+                fixed_content = fix_image_paths(content, route)
+                
+                with open(readme_dest, 'w', encoding='utf-8') as f:
+                    f.write(fixed_content)
+                
+                print(f"[✓] Synced & Depth-Fixed README for {route}")
         
-        # 2. Dynamic Count
         stats = count_files(src_path) if info["src_path"] else {"scripts": 0, "papers": 0, "others": 0}
-        
         dynamic_metadata[route] = {
             "path": info["src_path"],
             "title": info["title"],
@@ -161,7 +173,6 @@ def sync():
             "others": stats["others"]
         }
 
-    # 3. Write metadata.js
     js_content = f"window.labMetadata = {json.dumps(dynamic_metadata, indent=2)};"
     with open(os.path.join(target_dir, "metadata.js"), "w", encoding="utf-8") as f:
         f.write(js_content)

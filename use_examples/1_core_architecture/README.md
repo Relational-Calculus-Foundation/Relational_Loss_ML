@@ -29,6 +29,25 @@ This directory contains three isolated, self-contained Python scripts. You can r
 **The Relational Fix:** We implemented the Relational Loss directly on top of a PyTorch Transformer Encoder architecture.
 * **What you will see:** The exact same scale-invariant behavior observed in simple MLPs translates perfectly to Multi-Head Attention blocks. The Transformer learns the relative geometry of the sequence without being poisoned by the absolute scale of the positional or token embeddings.
 
+## 📈 Performance Benchmarks
+
+The experiments in this directory prove that Relational Calculus is not just a physical theory, but a structural optimization for deep learning.
+
+### 1. Algorithmic Independence (SGD vs Adam)
+By making the loss landscape spherical, we liberate the model from heavy adaptive optimizers. The Relational model converges faster with pure **SGD** than the absolute model does with **Adam**.
+
+![Architecture Convergence Speed](../../docs/assets/arch_convergence_speed.png)
+
+### 2. Transformer Zero-Shot Scaling
+A Relational Transformer trained on a specific scale range maintains its precision across the entire scale spectrum, whereas standard Transformers exhibit catastrophic error growth outside their training distribution.
+
+![Architecture Transformer Scales](../../docs/assets/arch_transformer_scales.png)
+
+### 3. Optimization Topology
+The difference in performance is rooted in geometry. The Absolute loss creates stretched, elliptical "valleys" that trap gradients, while the Relational loss creates a perfectly spherical landscape, ensuring every gradient step moves directly toward the global minimum.
+
+![Architecture Landscape Topology](../../docs/assets/arch_landscape_topology.png)
+
 ## 🚀 How to Run
 
 No heavy datasets or GPU clusters are required. The data generation and visualization are procedurally built into the scripts.

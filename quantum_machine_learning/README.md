@@ -27,5 +27,24 @@ The included **[quantum_ML_paper.md](./quantum_ML_paper.md)** details how we sol
 2.  **Green Quantum AI**: Achieve cross-molecular generalization on a single CPU in seconds, bypassing the need for massive GPU clusters.
 3.  **Universal Templates**: Covalent and ionic bonds follow universal relational blueprints regardless of the absolute Hartree scale.
 
+## 📈 Performance Benchmarks
+
+The transition from absolute energy to dimensionless binding fractions allows the model to capture the **universal bond template**. While the absolute model fails catastrophically when moving from $H_2$ to $LiH$ (predicting energies in the wrong order of magnitude), the Relational model achieves near-perfect zero-shot transfer by recognizing the proportional "filling" of the system's informational capacity.
+
+### 1. Zero-Shot Potential Energy Surface (PES)
+The Relational model trained on $H_2$ accurately traces the dissociation curve of $LiH$, proving that the "physics of the bond" is scale-invariant.
+
+![Quantum Zero-Shot PES](../docs/assets/quantum_zero_shot_pes.png)
+
+### 2. Error Reduction (MAE)
+By deleting the scale-drift between different molecular systems, we achieve a massive reduction in Mean Absolute Error (MAE), making CPU-based regression competitive with heavy quantum simulations.
+
+![Quantum MAE Comparison](../docs/assets/quantum_mae_comparison.png)
+
+### 3. Parity Analysis (Predicted vs True)
+The Relational model's predictions align perfectly with the ideal diagonal, whereas the absolute model exhibits non-physical shifts when transferring to larger molecular systems ($LiH$).
+
+![Quantum Parity Plot](../docs/assets/quantum_parity_plot.png)
+
 ---
 *For the complete mathematical derivation and benchmarking results, refer to [quantum_ML_paper.md](./quantum_ML_paper.md). To reproduce the zero-shot transfer, run `python relational_xgboost_vqe.py`.*

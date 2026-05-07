@@ -23,6 +23,20 @@ This directory contains two self-contained Python scripts proving the zero-shot 
 **The Relational Fix:** We treat the meteorological target as a relational capacity problem (e.g., rainfall relative to maximum atmospheric saturation).
 * **What you will see:** The script demonstrates how converting an unbounded meteorological target into a normalized relational bound `[0, 1]` acts as a perfect feature selector. It cures the curse of dimensionality, allowing the model to converge smoothly and resist environmental noise that destroys traditional MSE baselines.
 
+## 📈 Performance Benchmarks
+
+The integration of **Buckingham's $\pi$ theorem** into the loss function creates a model that is inherently scale-invariant. This is critical for physical sciences where experimental data is often collected at a much smaller scale than the final deployment environment.
+
+### 1. Navier-Stokes Zero-Shot Extrapolation (Log-Log)
+In a 100,000x Drag Force scale jump, the Absolute model saturates and fails to extrapolate outside its training "box." The Relational model, by predicting the dimensionless $C_d$ coefficient, maintains perfect physical alignment across five orders of magnitude.
+
+![Physics Reynolds Extrapolation](../../docs/assets/physics_reynolds_extrapolation.png)
+
+### 2. Error vs Physical Scale (Invariance Proof)
+As the system scale increases, the error of a traditional model grows exponentially due to the "memorization" of training units. The Relational model's error remains flat and constant, proving it has learned the **Universal Template** of the physics involved.
+
+![Physics Error vs Scale](../../docs/assets/physics_error_vs_scale.png)
+
 ## 🚀 How to Run
 
 No heavy simulation software (like OpenFOAM or ANSYS) is required. The physical environments are procedurally generated within the scripts.
