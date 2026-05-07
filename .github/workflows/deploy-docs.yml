@@ -23,8 +23,10 @@ jobs:
       - name: Sync Markdown Files 🔄
         run: python docs/sync_docs.py
 
-      - name: Deploy to GitHub Pages 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: docs # La cartella che contiene il sito
-          branch: gh-pages # Il branch di destinazione
+      - name: Commit and Push changes 🚀
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -f docs/modules/
+          git commit -m "docs: auto-sync documentation modules [skip ci]" || echo "No changes to commit"
+          git push origin main
