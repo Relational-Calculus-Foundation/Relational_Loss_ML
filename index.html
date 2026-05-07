@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Relational Calculus - Dimensionless Deep Learning</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Official documentation for the Relational Calculus Framework.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  
+  <!-- Theme: Modern & Professional -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  
+  <style>
+    :root {
+      --theme-color: #0d6efd; /* Bootstrap Primary Blue */
+      --sidebar-width: 300px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    /* Move Sidebar Toggle to TOP */
+    .sidebar-toggle {
+        top: 0 !important;
+        bottom: auto !important;
+        background: rgba(255,255,255,0.9) !important;
+        left: 0 !important;
+        padding: 15px !important;
+        width: 44px;
+        height: 44px;
+        box-sizing: border-box;
+    }
+
+    /* Navbar disabled */
+    .app-nav {
+      display: none;
+    }
+
+    /* Left Sidebar Styling */
+    .sidebar {
+      background-color: #fff;
+      border-right: 1px solid #e9ecef;
+      width: var(--sidebar-width);
+      padding-top: 20px;
+    }
+
+    .sidebar > h1 {
+        font-size: 1.5rem;
+        margin: 1rem;
+        text-align: center;
+    }
+
+    /* Active Link Highlighting (Left Sidebar) */
+    .sidebar-nav li.active > a {
+      color: var(--theme-color) !important;
+      font-weight: 600 !important;
+      border-left: 3px solid var(--theme-color) !important;
+      padding-left: 12px !important;
+      background: rgba(13, 110, 253, 0.05) !important;
+    }
+    .sidebar-nav a {
+      border-left: 3px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    /* Content Area */
+    .content {
+      padding-top: 20px;
+      margin-right: 0;
+    }
+    .markdown-section {
+      max-width: 850px;
+      padding: 40px 60px;
+      margin-left: 10%;
+      margin-right: auto;
+    }
+
+    /* Floating Lab Card Styles (Desktop) */
+    .lab-card-container {
+      position: fixed;
+      right: 30px;
+      top: 100px;
+      width: 280px;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .lab-card {
+      background: #fff;
+      border: 1px solid #e9ecef;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      padding: 0;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      overflow: hidden;
+    }
+
+    .lab-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 45px rgba(0,0,0,0.12);
+      text-decoration: none;
+    }
+
+    .lab-card-content {
+        padding: 20px;
+    }
+
+    .lab-card-label {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--theme-color);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .lab-card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #1a1d20;
+    }
+
+    .lab-card-description {
+        font-size: 0.85rem;
+        color: #6c757d;
+        line-height: 1.5;
+    }
+
+    .lab-card-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid #f1f3f5;
+      border-bottom: 1px solid #f1f3f5;
+      padding: 15px 0;
+      margin-top: 20px;
+      background: #fafbfc;
+    }
+
+    .stat-item {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .stat-item:not(:last-child) {
+        border-right: 1px solid #f1f3f5;
+    }
+
+    .stat-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #212529;
+    }
+
+    .stat-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: #adb5bd;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .lab-card-button {
+        background: var(--theme-color);
+        color: #fff !important;
+        text-align: center;
+        padding: 14px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        display: block;
+        transition: background 0.2s;
+    }
+
+    /* Option 3: Sticky Mobile Banner (< 1250px) */
+    @media screen and (max-width: 1250px) {
+      body {
+          padding-bottom: 80px; /* Space for the bottom banner */
+      }
+      .markdown-section {
+          margin-left: auto;
+          margin-right: auto;
+          padding: 40px 20px;
+      }
+      .lab-card-container {
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        right: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        border-top: 1px solid #dee2e6;
+        box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+        z-index: 1000;
+      }
+      .lab-card {
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 15px;
+        transform: none !important;
+      }
+      .lab-card-content {
+          padding: 0;
+          flex: 1;
+          min-width: 0;
+      }
+      .lab-card-label, .lab-card-description {
+          display: none;
+      }
+      .lab-card-title {
+          margin: 0;
+          font-size: 0.95rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+      }
+      .lab-card-stats-grid {
+          margin: 0 15px;
+          padding: 0;
+          border: none;
+          background: transparent;
+          display: flex;
+          gap: 15px;
+      }
+      .stat-item {
+          flex-direction: row;
+          gap: 5px;
+          align-items: center;
+      }
+      .stat-item:not(:last-child) { border: none; }
+      .stat-value { font-size: 0.9rem; }
+      .stat-label { font-size: 0.7rem; }
+      
+      .lab-card-button {
+          padding: 10px 20px;
+          border-radius: 8px;
+          width: auto;
+          font-size: 0.8rem;
+      }
+    }
+
+    /* Extra small screens */
+    @media screen and (max-width: 600px) {
+        .lab-card-stats-grid { display: none; }
+    }
+
+    /* MathJax Display */
+    .MathJax_Display {
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+  </style>
+
+  <!-- MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], '\\[','\\]'],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <!-- Mermaid -->
+  <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: false });
+  </script>
+</head>
+<body>
+  <div id="app">Loading...</div>
+  
+  <script src="modules/metadata.js"></script>
+
+  <script>
+    window.$docsify = {
+      name: 'Ciber Fabbrica',
+      repo: 'https://github.com/massimilianoconcas0-del/Relational_Loss_ML',
+      
+      // Navigation
+      loadSidebar: true,
+      loadNavbar: false,
+      subMaxLevel: 0, 
+      auto2top: true,
+      homepage: 'introduction.md',
+      
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md',
+        '/introduction': '/introduction.md',
+        '/philosophy': '/philosophy.md',
+        '/core-module': '/modules/relational_calculus.md',
+        '/research/emergent': '/modules/emergent_intelligence.md',
+        '/research/green-ai': '/modules/green_AI_practitioner_guide.md',
+        '/research/quantum': '/modules/quantum_machine_learning.md',
+        '/research/lidar': '/modules/relational_lidar.md',
+        '/research/rna': '/modules/rna_sequencing.md',
+        '/examples/core': '/modules/use_examples_1_core_architecture.md',
+        '/examples/physics': '/modules/use_examples_2_physics_and_continuous_systems.md',
+        '/examples/robotics': '/modules/use_examples_3_robotics_and_vision.md',
+        '/examples/hep': '/modules/use_examples_hep.md',
+        '/examples/nlp': '/modules/use_examples_nlp_and_enterprise_ai.md',
+        '/examples/tabular': '/modules/use_examples_tabular_data_xgboost.md'
+      },
+
+      markdown: {
+        renderer: {
+          code: function(code, lang) {
+            if (lang === "mermaid") {
+              return (
+                '<div class="mermaid">' + code + "</div>"
+              );
+            }
+            return this.origin.code.apply(this, arguments);
+          }
+        }
+      },
+
+      plugins: [
+        function(hook, vm) {
+          hook.doneEach(function() {
+            // Render Mermaid
+            if (typeof mermaid !== 'undefined') {
+              mermaid.init(undefined, '.mermaid');
+            }
+
+            // Remove existing card if any
+            const existing = document.querySelector('.lab-card-container');
+            if (existing) existing.remove();
+
+            const path = vm.route.path;
+            const data = labMetadata[path];
+
+            if (data) {
+              const githubBase = 'https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/';
+              const container = document.createElement('div');
+              container.className = 'lab-card-container';
+              
+              const statsGrid = data.showStats ? `
+                  <div class="lab-card-stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-value">${data.papers}</span>
+                        <span class="stat-label">Papers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">${data.scripts}</span>
+                        <span class="stat-label">Scripts</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">${data.others}</span>
+                        <span class="stat-label">Others</span>
+                    </div>
+                  </div>
+              ` : '';
+
+              container.innerHTML = `
+                <div class="lab-card">
+                  <div class="lab-card-content">
+                    <div class="lab-card-label">Lab Repository</div>
+                    <div class="lab-card-title">
+                      📂 ${data.title}
+                    </div>
+                    <div class="lab-card-description">
+                      ${data.description}
+                    </div>
+                  </div>
+                  
+                  ${statsGrid}
+
+                  <a href="${githubBase}${data.path}" class="lab-card-button" target="_blank">
+                     Explore on GitHub ➔
+                  </a>
+                </div>
+              `;
+              document.body.appendChild(container);
+            }
+
+            // Render MathJax
+            if (typeof MathJax !== 'undefined') {
+              MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            }
+          });
+        }
+      ]
+    }
+  </script>
+
+  <!-- Docsify Core -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  
+  <!-- Other Plugins -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+  
+  <!-- Prism -->
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+</body>
+</html>
