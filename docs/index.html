@@ -7,84 +7,487 @@
   <meta name="description" content="Official documentation for the Relational Calculus Framework.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   
-  <!-- Theme: Simple (Material-like) -->
+  <!-- Theme: Modern & Professional -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
   
   <style>
     :root {
-      --theme-color: #1a73e8;
+      --theme-color: #0d6efd; /* Bootstrap Primary Blue */
+      --sidebar-width: 300px;
     }
-    .sidebar-nav li > a {
-      font-size: 14px;
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    /* Move Sidebar Toggle to TOP */
+    .sidebar-toggle {
+        top: 0 !important;
+        bottom: auto !important;
+        background: rgba(255,255,255,0.9) !important;
+        left: 0 !important;
+        padding: 15px !important;
+        width: 44px;
+        height: 44px;
+        box-sizing: border-box;
+    }
+
+    /* Navbar disabled */
+    .app-nav {
+      display: none;
+    }
+
+    /* Left Sidebar Styling */
+    .sidebar {
+      background-color: #fff;
+      border-right: 1px solid #e9ecef;
+      width: var(--sidebar-width);
+      padding-top: 20px;
+    }
+
+    .sidebar > h1 {
+        font-size: 1.5rem;
+        margin: 1rem;
+        text-align: center;
+    }
+
+    /* Active Link Highlighting (Left Sidebar) */
+    .sidebar-nav li.active > a {
+      color: var(--theme-color) !important;
+      font-weight: 600 !important;
+      border-left: 3px solid var(--theme-color) !important;
+      padding-left: 12px !important;
+      background: rgba(13, 110, 253, 0.05) !important;
+    }
+    .sidebar-nav a {
+      border-left: 3px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    /* Content Area */
+    .content {
+      padding-top: 20px;
+      margin-right: 0;
     }
     .markdown-section {
-      max-width: 950px;
-      margin: 0 auto;
-      padding: 30px 15px 40px;
+      max-width: 850px;
+      padding: 40px 60px;
+      margin-left: 10%;
+      margin-right: auto;
     }
-    /* Protezione per formule matematiche lunghe */
+
+    /* Floating Lab Card Styles (Desktop) */
+    .lab-card-container {
+      position: fixed;
+      right: 30px;
+      top: 100px;
+      width: 280px;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .lab-card {
+      background: #fff;
+      border: 1px solid #e9ecef;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      padding: 0;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      overflow: hidden;
+    }
+
+    .lab-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 45px rgba(0,0,0,0.12);
+      text-decoration: none;
+    }
+
+    .lab-card-content {
+        padding: 20px;
+    }
+
+    .lab-card-label {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--theme-color);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .lab-card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #1a1d20;
+    }
+
+    .lab-card-description {
+        font-size: 0.85rem;
+        color: #6c757d;
+        line-height: 1.5;
+    }
+
+    .lab-card-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid #f1f3f5;
+      border-bottom: 1px solid #f1f3f5;
+      padding: 15px 0;
+      margin-top: 20px;
+      background: #fafbfc;
+    }
+
+    .stat-item {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .stat-item:not(:last-child) {
+        border-right: 1px solid #f1f3f5;
+    }
+
+    .stat-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #212529;
+    }
+
+    .stat-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: #adb5bd;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .lab-card-button {
+        background: var(--theme-color);
+        color: #fff !important;
+        text-align: center;
+        padding: 14px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        display: block;
+        transition: background 0.2s;
+    }
+
+    /* Option 3: Sticky Mobile Banner (< 1250px) */
+    @media screen and (max-width: 1250px) {
+      body {
+          padding-bottom: 80px; /* Space for the bottom banner */
+      }
+      .markdown-section {
+          margin-left: auto;
+          margin-right: auto;
+          padding: 40px 20px;
+      }
+      .lab-card-container {
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        right: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        border-top: 1px solid #dee2e6;
+        box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+        z-index: 1000;
+      }
+      .lab-card {
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 15px;
+        transform: none !important;
+      }
+      .lab-card-content {
+          padding: 0;
+          flex: 1;
+          min-width: 0;
+      }
+      .lab-card-label, .lab-card-description {
+          display: none;
+      }
+      .lab-card-title {
+          margin: 0;
+          font-size: 0.95rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+      }
+      .lab-card-stats-grid {
+          margin: 0 15px;
+          padding: 0;
+          border: none;
+          background: transparent;
+          display: flex;
+          gap: 15px;
+      }
+      .stat-item {
+          flex-direction: row;
+          gap: 5px;
+          align-items: center;
+      }
+      .stat-item:not(:last-child) { border: none; }
+      .stat-value { font-size: 0.9rem; }
+      .stat-label { font-size: 0.7rem; }
+      
+      .lab-card-button {
+          padding: 10px 20px;
+          border-radius: 8px;
+          width: auto;
+          font-size: 0.8rem;
+      }
+    }
+
+    /* Extra small screens */
+    @media screen and (max-width: 600px) {
+        .lab-card-stats-grid { display: none; }
+    }
+
+    /* MathJax Display */
     .MathJax_Display {
       overflow-x: auto;
       overflow-y: hidden;
     }
   </style>
 
-  <!-- MathJax Configuration -->
+  <!-- MathJax -->
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
         displayMath: [['$$','$$'], ['\\[','\\]']],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        processEscapes: true
       }
     });
   </script>
   <script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 <body>
-  <div id="app">Loading documentation...</div>
+  <div id="app">Loading...</div>
+  
   <script>
+    const labMetadata = {
+      '/introduction': {
+        path: '',
+        title: 'Project Overview',
+        description: 'Explore the full Relational Calculus framework and all related research modules.',
+        showStats: false
+      },
+      '/philosophy': {
+        path: '',
+        title: 'Core Philosophy',
+        description: 'Deep dive into the theoretical shift from Magnitude to Relation in ML.',
+        showStats: false
+      },
+      '/core-module': {
+        path: 'relational_calculus',
+        title: 'Core Architecture',
+        description: 'Access the technical implementations, datasets, and research papers for this module.',
+        scripts: 1,
+        papers: 1,
+        others: 1,
+        showStats: true
+      },
+      '/research/emergent': {
+        path: 'emergent_intelligence',
+        title: 'Emergent Research',
+        description: 'Access the technical implementations, datasets, and research papers for this module.',
+        scripts: 0,
+        papers: 1,
+        others: 0,
+        showStats: true
+      },
+      '/research/green-ai': {
+        path: 'green_AI_practitioner_guide',
+        title: 'Green AI Practitioner',
+        description: 'Access the technical implementations, datasets, and research papers for this module.',
+        scripts: 1,
+        papers: 1,
+        others: 0,
+        showStats: true
+      },
+      '/research/quantum': {
+        path: 'quantum_machine_learning',
+        title: 'Quantum ML Lab',
+        description: 'Access the technical implementations, datasets, and research papers for this module.',
+        scripts: 2,
+        papers: 1,
+        others: 0,
+        showStats: true
+      },
+      '/research/lidar': {
+        path: 'relational_lidar',
+        title: 'Relational Lidar',
+        description: 'Access the technical implementations, datasets, and research papers for this module.',
+        scripts: 1,
+        papers: 0,
+        others: 0,
+        showStats: true
+      },
+      '/research/rna': {
+        path: 'rna_sequencing',
+        title: 'Genomics Lab',
+        description: 'Access the technical implementations, datasets, and research papers for this module.',
+        scripts: 2,
+        papers: 1,
+        others: 3,
+        showStats: true
+      },
+      '/examples/core': {
+        path: 'use_examples/1_core_architecture',
+        title: 'Core Optimization',
+        description: 'Access the technical implementations, datasets, and research papers for this module.',
+        scripts: 3,
+        papers: 0,
+        others: 0,
+        showStats: true
+      },
+      '/examples/physics': {
+        path: 'use_examples/2_physics_and_continuous_systems',
+        title: 'Physics & Fluid',
+        description: 'Access the technical implementations, datasets, and research papers for this module.',
+        scripts: 2,
+        papers: 0,
+        others: 0,
+        showStats: true
+      },
+      '/examples/robotics': {
+        path: 'use_examples/3_robotics_and_vision',
+        title: 'Robotics Lab',
+        description: 'Access the technical implementations, datasets, and research papers for this module.',
+        scripts: 2,
+        papers: 0,
+        others: 0,
+        showStats: true
+      },
+      '/examples/hep': {
+        path: 'use_examples/hep',
+        title: 'High Energy Physics',
+        description: 'Access the technical implementations, datasets, and research papers for this module.',
+        scripts: 1,
+        papers: 1,
+        others: 0,
+        showStats: true
+      },
+      '/examples/nlp': {
+        path: 'use_examples/nlp_and_enterprise_ai',
+        title: 'Enterprise NLP',
+        description: 'Access the technical implementations, datasets, and research papers for this module.',
+        scripts: 4,
+        papers: 0,
+        others: 0,
+        showStats: true
+      },
+      '/examples/tabular': {
+        path: 'use_examples/tabular_data_xgboost',
+        title: 'Tabular XGBoost',
+        description: 'Access the technical implementations, datasets, and research papers for this module.',
+        scripts: 1,
+        papers: 0,
+        others: 5,
+        showStats: true
+      }
+    };
+
     window.$docsify = {
-      name: 'Relational Calculus',
+      name: 'Ciber Fabbrica',
       repo: 'https://github.com/massimilianoconcas0-del/Relational_Loss_ML',
       
       // Navigation
       loadSidebar: true,
-      subMaxLevel: 3,
+      loadNavbar: false,
+      subMaxLevel: 0, 
       auto2top: true,
+      homepage: 'introduction.md',
       
-      // General Settings
       alias: {
         '/.*/_sidebar.md': '/_sidebar.md',
-        '/theory/white-paper': 'https://raw.githubusercontent.com/massimilianoconcas0-del/Relational_Loss_ML/main/WHITE_PAPER.md',
-        '/research/emergent': 'https://raw.githubusercontent.com/massimilianoconcas0-del/Relational_Loss_ML/main/emergent_intelligence/emergent_paper_draft.md',
-        '/research/green-ai': 'https://raw.githubusercontent.com/massimilianoconcas0-del/Relational_Loss_ML/main/green_AI_practitioner_guide/GREEN_AI_PAPER.md',
-        '/research/quantum': 'https://raw.githubusercontent.com/massimilianoconcas0-del/Relational_Loss_ML/main/quantum_machine_learning/quantum_ML_paper.md',
-        '/research/rna': 'https://raw.githubusercontent.com/massimilianoconcas0-del/Relational_Loss_ML/main/rna_sequencing/relational_RNA_paper.md',
-        '/examples/core': 'https://raw.githubusercontent.com/massimilianoconcas0-del/Relational_Loss_ML/main/use_examples/1_core_architecture/README.md',
-        '/examples/physics': 'https://raw.githubusercontent.com/massimilianoconcas0-del/Relational_Loss_ML/main/use_examples/2_physics_and_continuous_systems/README.md',
-        '/examples/robotics': 'https://raw.githubusercontent.com/massimilianoconcas0-del/Relational_Loss_ML/main/use_examples/3_robotics_and_vision/README.md',
-        '/examples/vision': 'https://raw.githubusercontent.com/massimilianoconcas0-del/Relational_Loss_ML/main/use_examples/3_robotics_and_vision/README.md',
-        '/examples/nlp': 'https://raw.githubusercontent.com/massimilianoconcas0-del/Relational_Loss_ML/main/use_examples/nlp_and_enterprise_ai/README.md',
-        '/examples/hep': 'https://raw.githubusercontent.com/massimilianoconcas0-del/Relational_Loss_ML/main/use_examples/hep/hpe_paper.md',
-        '/examples/quantum-chem': 'https://raw.githubusercontent.com/massimilianoconcas0-del/Relational_Loss_ML/main/quantum_machine_learning/quantum_ML_paper.md',
-        '/examples/tabular': 'https://raw.githubusercontent.com/massimilianoconcas0-del/Relational_Loss_ML/main/use_examples/tabular_data_xgboost/README.md'
+        '/introduction': '/introduction.md',
+        '/philosophy': '/philosophy.md',
+        '/core-module': '/../relational_calculus/README.md',
+        '/research/emergent': '/../emergent_intelligence/README.md',
+        '/research/green-ai': '/../green_AI_practitioner_guide/README.md',
+        '/research/quantum': '/../quantum_machine_learning/README.md',
+        '/research/lidar': '/../relational_lidar/README.md',
+        '/research/rna': '/../rna_sequencing/README.md',
+        '/examples/core': '/../use_examples/1_core_architecture/README.md',
+        '/examples/physics': '/../use_examples/2_physics_and_continuous_systems/README.md',
+        '/examples/robotics': '/../use_examples/3_robotics_and_vision/README.md',
+        '/examples/hep': '/../use_examples/hep/README.md',
+        '/examples/nlp': '/../use_examples/nlp_and_enterprise_ai/README.md',
+        '/examples/tabular': '/../use_examples/tabular_data_xgboost/README.md'
       },
-      
-      // Plugins
-      search: {
-        maxAge: 86400000,
-        paths: 'auto',
-        placeholder: 'Search documentation...',
-        noData: 'No results!',
-        depth: 6
-      },
-      
+
       plugins: [
         function(hook, vm) {
           hook.doneEach(function() {
-            // Forza MathJax a scansionare la pagina dopo che Docsify ha caricato il contenuto
+            // Remove existing card if any
+            const existing = document.querySelector('.lab-card-container');
+            if (existing) existing.remove();
+
+            const path = vm.route.path;
+            const data = labMetadata[path];
+
+            if (data) {
+              const githubBase = 'https://github.com/massimilianoconcas0-del/Relational_Loss_ML/tree/main/';
+              const container = document.createElement('div');
+              container.className = 'lab-card-container';
+              
+              const statsGrid = data.showStats ? `
+                  <div class="lab-card-stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-value">${data.papers}</span>
+                        <span class="stat-label">Papers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">${data.scripts}</span>
+                        <span class="stat-label">Scripts</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">${data.others}</span>
+                        <span class="stat-label">Others</span>
+                    </div>
+                  </div>
+              ` : '';
+
+              container.innerHTML = `
+                <div class="lab-card">
+                  <div class="lab-card-content">
+                    <div class="lab-card-label">Lab Repository</div>
+                    <div class="lab-card-title">
+                      📂 ${data.title}
+                    </div>
+                    <div class="lab-card-description">
+                      ${data.description}
+                    </div>
+                  </div>
+                  
+                  ${statsGrid}
+
+                  <a href="${githubBase}${data.path}" class="lab-card-button" target="_blank">
+                     Explore on GitHub ➔
+                  </a>
+                </div>
+              `;
+              document.body.appendChild(container);
+            }
+
+            // Render MathJax
             if (typeof MathJax !== 'undefined') {
               MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             }
@@ -93,16 +496,14 @@
       ]
     }
   </script>
-  
+
   <!-- Docsify Core -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
   
-  <!-- Plugins -->
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <!-- Other Plugins -->
   <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
-
-  <!-- Prism Syntax Highlighting -->
+  
+  <!-- Prism -->
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
 </body>

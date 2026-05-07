@@ -1,21 +1,21 @@
-<!-- Theory -->
-* **Theory**
-  * [Relational Calculus White Paper](/theory/white-paper)
+---
 
-<!-- Research Papers -->
-* **Research Papers**
-  * [Emergent Intelligence](/research/emergent)
-  * [Green AI Guide](/research/green-ai)
-  * [Quantum Machine Learning](/research/quantum)
-  * [RNA Sequencing Oncology](/research/rna)
+- **Getting Started**
+  - [Introduction](/introduction)
+  - [Philosophy](/philosophy)
+  - [The Core Module](/core-module)
 
-<!-- Examples & Use Cases -->
-* **Case Studies**
-  * [Core Architecture](/examples/core)
-  * [Fluid Dynamics](/examples/physics)
-  * [Hardware & Robotics](/examples/robotics)
-  * [Computer Vision](/examples/vision)
-  * [Enterprise NLP & RAG](/examples/nlp)
-  * [High-Energy Physics](/examples/hep)
-  * [Quantum Chemistry](/examples/quantum-chem)
-  * [Tabular Data (XGBoost)](/examples/tabular)
+- **Research Frontiers**
+  - [Emergent Intelligence](/research/emergent)
+  - [Green AI](/research/green-ai)
+  - [Quantum ML](/research/quantum)
+  - [Relational Lidar](/research/lidar)
+  - [RNA Sequencing](/research/rna)
+
+- **Case Studies: The 8 Domains**
+  - [Core Optimization](/examples/core)
+  - [Physics & Fluid](/examples/physics)
+  - [Robotics & Vision](/examples/robotics)
+  - [High Energy Physics](/examples/hep)
+  - [Enterprise NLP](/examples/nlp)
+  - [Tabular XGBoost](/examples/tabular)
