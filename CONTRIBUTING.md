@@ -41,7 +41,45 @@ possible, outline a potential implementation approach.
 3. **Make your changes**, adhering to the code style guidelines below.
 4. **Add tests** for new features or bug fixes. The framework uses `pytest`;
    place your tests in the `tests/` directory or alongside the relevant module.
-5. **Run the existing tests** to ensure you haven't introduced any regressions:
-   ```bash
-   pip install -r requirements-dev.txt   # or just pytest
-   pytest tests/
+5. **Run the existing tests** to ensure you haven't introduced any regressions.
+   From the root of the repository, run:
+
+       pip install -r requirements-dev.txt   # or just pytest
+       pytest tests/
+
+6. **Update documentation** if your change affects public APIs, examples, or
+   the README.
+7. **Commit** your changes with a clear message. Use the imperative mood:
+   "Add support for multi-dimensional arrays" instead of "Changed array code".
+8. **Push** your branch to your fork and open a Pull Request (PR) against the
+   `main` branch of the foundation's repository.
+9. **Describe your PR**: explain what you did, why, and how to test it.
+   Reference any related issues using `#issue-number`.
+
+#### Code Style Guidelines
+
+- Follow [PEP 8](https://peps.python.org/pep-0008/) for Python code.
+- Use descriptive variable and function names.
+- Write complete docstrings in Google or NumPy style for all public functions
+  and classes.
+- Keep lines under 100 characters where practical.
+- Use type hints (Python 3.7+) to improve readability and maintainability.
+
+#### Review Process
+
+Maintainers will review your PR as soon as possible. During the review, we may
+ask for clarifications or suggest changes. The process is collaborative: we want
+your contribution to be the best it can be.
+
+## Governance
+
+Project decisions, including the acceptance of significant contributions and
+strategic direction, are outlined in the [GOVERNANCE.md](./GOVERNANCE.md) file.
+In general, maintainers have the final authority over code changes.
+
+## License
+
+By contributing, you agree that your contributions will be licensed under the
+[MIT License](./LICENSE).
+
+Thank you for helping advance the Relational Calculus revolution!
