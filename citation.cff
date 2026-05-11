@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use the Relational Calculus Framework, please cite the foundational paper."
+title: "The Relational Calculus Framework: A Dimensionless Paradigm for Machine Learning"
+authors:
+  - family-names: Concas
+    given-names: Massimiliano
+    orcid: "https://orcid.org/0009-0005-7878-636X"
+doi: 10.5281/zenodo.19757717
+date-released: 2026-04-25
+license: MIT
+repository-code: "https://github.com/Relational-Calculus-Foundation/Relational_Loss_ML"
+url: "https://github.com/Relational-Calculus-Foundation/Relational_Loss_ML"
