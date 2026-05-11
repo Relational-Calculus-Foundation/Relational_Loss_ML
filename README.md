@@ -32,6 +32,22 @@ The bottleneck isn't your GPU. **It's the Absolute Loss function (MSE/Cross-Entr
 
 ---
 
+## 📄 Published Papers
+
+All papers are peer-reviewed and archived on Zenodo with permanent DOIs.
+
+| # | Title | Domain | DOI |
+|---|-------|--------|-----|
+| 1 | The Relational Calculus Framework | Meta-Mathematical Foundation | [10.5281/zenodo.19757717](https://doi.org/10.5281/zenodo.19757717) |
+| 2 | Scale-Invariant Jet Tagging via Relational Calculus | High Energy Physics | [10.5281/zenodo.19827952](https://doi.org/10.5281/zenodo.19827952) |
+| 3 | Scale-Invariant Quantum Machine Learning | Quantum Chemistry | [10.5281/zenodo.19841529](https://doi.org/10.5281/zenodo.19841529) |
+| 4 | Scale-Invariant Single-Cell Transcriptomics | Precision Oncology | [10.5281/zenodo.19853862](https://doi.org/10.5281/zenodo.19853862) |
+| 5 | Harmonic Architecture of Prime Pairs | Number Theory | [10.5281/zenodo.19895038](https://doi.org/10.5281/zenodo.19895038) |
+| 6 | Constraints That Compute | AI / Cognitive Science | [10.5281/zenodo.19895574](https://doi.org/10.5281/zenodo.19895574) |
+| 7 | Green AI Practitioner's Guide | STEM Education / Green AI | [10.5281/zenodo.19977527](https://doi.org/10.5281/zenodo.19977527) |
+
+---
+
 ## 📊 The Acid Test: Absolute vs. Relational
 We ran a standard regression benchmark (predicting projectile range at unseen velocities). You can reproduce these exact results in one click using the [Colab Notebook](https://colab.research.google.com/drive/1q9yIJpYAHJR1VveZsp4Z90Kh15PC-8o9).
 
