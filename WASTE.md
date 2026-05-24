@@ -300,8 +300,6 @@ All code, including the ML validation experiments and the dimensional-tax simula
 
 A single executable notebook (`overhead_law_and_simulation.ipynb`) will reproduce every figure and table in this paper.
 
-### References
-[1] [Concas M.], "Relational Calculus: A Foundation for Efficient Learning," Zenodo, 2023. [https://zenodo.org/records/19757717](https://zenodo.org/records/19757717)
 
 ## APPENDIX A: Relational Calculus Deployment Guide
 
