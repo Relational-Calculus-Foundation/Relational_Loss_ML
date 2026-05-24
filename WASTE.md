@@ -302,3 +302,95 @@ A single executable notebook (`overhead_law_and_simulation.ipynb`) will reproduc
 
 ### References
 [1] [Concas M.], "Relational Calculus: A Foundation for Efficient Learning," Zenodo, 2023. [https://zenodo.org/records/19757717](https://zenodo.org/records/19757717)
+
+## APPENDIX A: Relational Calculus Deployment Guide
+
+### What the framework actually demands (beyond the loss function)
+The draft introduces two distinct layers:
+
+1. **The $O=D^2$ law** – absolute measurement scales inflate the loss landscape’s condition number. Any dimensionless representation (including simple min‑max scaling) collapses this overhead and speeds up convergence.
+2. **The ontometric paradigm** – the system must be described in its own intrinsic, physically anchored coordinates. This requires architectural separation of the scale from the invariant part of the problem, and reconstruction via a known North Star (theoretical capacity).
+
+The loss function (`RelationalMSELoss`, `RelationalCrossEntropyLoss`) is only the interface. The real power emerges when you obey the architectural rules.
+
+---
+
+### Common pitfalls (and how they mislead)
+
+**1. Using the relational loss with the same input features as the absolute model**
+*   **Symptom:** You see no extrapolation benefit; the model performs identically to data‑max scaling.
+*   **Why:** The network can still learn to multiply by a large constant internally. You haven’t forced it to learn the dimensionless invariant.
+*   **Fix:** Remove the scale‑bearing feature(s) from the input. The model must see only the dimensionless predictors. Reconstruct the absolute value at inference using the known capacity.
+
+**2. Using the training‑set maximum as the “capacity”**
+*   **Symptom:** Zero‑shot generalization to unseen scales fails; the model saturates at the historical maximum.
+*   **Why:** The ontometric anchor must be a theoretical limit or a known physical relationship, not a data statistic. The data max is just another empirical yardstick.
+*   **Fix:** Identify a genuine North Star—the maximum the system can ever reach under the physics, or a known scaling law (e.g., $v^2/g$ for projectile range). This must be known a priori and independent of the training data.
+
+**3. No bounded output on the relational model**
+*   **Symptom:** The model can predict physically impossible values when extrapolating.
+*   **Why:** If you use a linear output, the model can emit any real number, breaking the dimensionless ratio’s [0,1] semantic.
+*   **Fix:** Use a Sigmoid (or ReLU clamped to [0,1]) as the final activation. The network’s output must be structurally constrained to the dimensionless interval that the North Star defines.
+
+**4. Testing the framework only on a loss‑swap, not an architecture‑swap**
+*   **Symptom:** You conclude the North Star offers no advantage over min‑max scaling.
+*   **Why:** The experiment doesn’t exercise the architectural discipline; it only measures conditioning, which any scaling improves.
+*   **Fix:** Compare an Absolute baseline (sees all features, predicts absolute target) against a True relational implementation (sees only dimensionless features, predicts ratio $\in [0,1]$, and uses external capacity for reconstruction).
+
+---
+
+### How to correctly deploy (step by step)
+
+**Step 1: Identify the scale‑bearing quantities**
+What variables carry the “size” of the system but are not part of the invariant physics?
+Examples: velocity in projectile range, precipitable water in rainfall, absolute viscosity/density in drag.
+
+**Step 2: Determine the theoretical capacity (North Star)**
+This is the function that converts the scale variable into the maximum possible output. It must be a known physical law or a provable theoretical limit. Do not estimate it from data.
+Example: `capacity = v^2 / g` for a projectile; `capacity = total_water_content` for rainfall.
+
+**Step 3: Design the input separation**
+*   **Relational model input:** Only the features that affect the dimensionless ratio (e.g., angle, shear, Reynolds number).
+*   **Excluded from input:** The raw scale variables (e.g., velocity, water content, $\rho$, $v$, $r$, $\mu$ individually). These go only into the capacity calculation.
+
+**Step 4: Define the target**
+The relational model’s target is `true_ratio = absolute_target / capacity`. This ratio must lie in [0,1] by construction (if the North Star is correct).
+
+**Step 5: Architecture**
+*   **Final layer:** Sigmoid (or a custom clamped activation) to guarantee output $\in [0,1]$.
+*   **Loss:** `RelationalMSELoss` (takes `pred_ratio`, `target_absolute`, `capacity`) or plain MSE if you pre‑compute the ratio. The relational loss is convenient because it keeps the absolute target and capacity in the training loop, allowing per‑sample capacities.
+
+**Step 6: Inference reconstruction**
+Get the network’s dimensionless ratio $r$. Compute absolute prediction: `pred_abs = r * capacity`. The capacity here is computed from the current input’s scale features using the known physical law—even if the scale is outside the training range.
+
+**Step 7: Validation**
+Run these two smoke tests. They will immediately reveal if you’ve correctly implemented the paradigm:
+*   **Test A: Unit‑change invariance.** Train on data in one unit system (e.g., metres). Test on the same data expressed in a different unit (e.g., centimetres), but with the capacity also expressed in the new units. The absolute predictions (after converting back to the original units) must be nearly identical. If not, you’re leaking scale into the model.
+*   **Test B: Zero‑shot scale generalization.** Train with scale values in a limited range (e.g., 10–50). Test on scale values far beyond that range (e.g., 50–100), but still within the theoretical capacity’s validity. The relational model’s error should remain low, while an absolute model (or a relational model that still sees the scale) will explode.
+
+If both tests pass, you have a genuine ontometric implementation.
+
+---
+
+### What the relational loss alone is still good for
+Even without the full architectural shift, using the relational loss with a reasonable capacity (e.g., a known physical upper bound) will:
+
+*   Collapse the conditioning overhead (the $O=D^2$ effect).
+*   Ensure perfect scale invariance under unit changes (if capacity co‑scales).
+*   Provide a safety net – the predictions, when reconstructed, will never exceed the physical ceiling, even if the model is poorly calibrated.
+
+This is already a significant improvement for many regression problems where the scale is modest and extrapolation isn’t required. But for the full ontometric vision—zero‑shot generalization and true learning of invariants—the architectural separation is mandatory.
+
+---
+
+### Summary checklist
+*   I am using a theoretical capacity (North Star), not the training‑set max.
+*   The relational model’s input excludes the scale‑bearing features.
+*   The relational model has a bounded output (e.g., Sigmoid) that matches the [0,1] ratio semantics.
+*   At inference, I reconstruct the absolute value as `pred_ratio * capacity`.
+*   I have validated unit‑change invariance (predictions unchanged under unit scaling).
+*   I have validated zero‑shot scale generalization (low error on scale values outside the training range).
+
+When these hold, you are no longer just scaling targets; you are practicing ontometry. And your models will be smaller, faster, safer, and true to the physics they claim to represent.
+
+This guide is a living document, derived from the adversarial testing of the Relational Calculus framework. It will evolve as the community uncovers further subtleties. For reproducible experiments and code, see the companion repository.
