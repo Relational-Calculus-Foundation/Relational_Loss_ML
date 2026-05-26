@@ -19,6 +19,10 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0005--7878--636X-A6CE39?style=flat&logo=orcid&logoColor=white)](https://orcid.org/0009-0005-7878-636X)
 
+<div style="background-color:#ffdddd; border-left: 6px solid #f44336; padding: 12px; margin: 16px 0;">
+  <strong style="color:#f44336; font-size:1.2em;">🔴 HARD WARNING: EDUCATIONAL PURPOSE ONLY - contact us for real engineering</strong>
+</div>
+
 **Keywords:** `Scale-Invariant Loss`, `Zero-Shot Transfer`, `XGBoost`, `Tabular Data`, `Dimensionless Math`, `Machine Learning Optimization`, `PyTorch Custom Loss`, `Exploding Gradient Fix`, `VRAM Reduction`.
 
 ---
