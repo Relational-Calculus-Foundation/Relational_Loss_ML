@@ -91,6 +91,8 @@ This stands in contrast to Rovelli’s Relational Quantum Mechanics, which still
 **[Bridge to Part 2]**
 Everything that has been said so far is a description of the *why*. It answers the deep question: why does unnecessary computation exist in the first place? The answer is that every time we impose an external measurement scale—an eterometric benchmark—on a system that already possesses its own internal, ontometric dimension, we create a structural mismatch. That mismatch is not merely philosophical; it is mathematically precise and computationally lethal. The ontometric insight gives us the right to expect that this mismatch can be isolated, measured, and eliminated. And once isolated, it reveals itself as the single root cause of the massive, silent computational waste that pervades our simulations and our machine learning models. The waste is not an accident; it is the shadow of an imported yardstick.
 
+To clarify the hierarchy of these concepts: Ontometry is the foundational philosophy and physics of local measurement, while Relational Calculus is its concrete mathematical framework and software implementation. Crucially, this approach is fundamentally distinct from Physics-Informed Neural Networks (PINNs). Where PINNs attempt to teach a network physics by adding a soft penalty to the loss function, an ontometric AI fundamentally restructures the input and output state space to be intrinsically dimensionless. The physics is not an appended penalty; it is the geometry of the data itself.
+
 What follows is the numerical proof. We now translate the ontometric mismatch into a falsifiable equation, validate it across six real-world domains, and extend it to classical physics problems where the waste factor reaches the hundreds of billions. This is the *how*: the law that lets us measure the waste, predict it, and build tools to erase it. Together, the two parts form a single, unified theory of computational waste—a theory that, as Landauer might have noted, ties physical irreversibility to logical unnecessary operations, and as Kolmogorov might have seen, reveals the shortest description of a system to be the one measured in its own native coordinates.
 
 ---
@@ -365,6 +367,8 @@ $$
 
 The eterometric model cannot be corrected by any analogous rule, because it has no anchor for $T_c$. Temperature in Kelvin is just a number; nothing in the model encodes the fact that 100 is a special boundary. Any post-hoc threshold would be an arbitrary guess, as likely to clip valid predictions as to remove false ones.
 
+A skeptic might argue that applying this rule is merely hardcoding an if-statement. That is precisely the point. Machine learning models should not be forced to spend compute (and risk catastrophic failure) attempting to learn fundamental physical discontinuities from data. The power of Ontometry is that it allows us to cleanly inject known physical boundaries—the North Star—directly into the architecture, freeing the neural network to exclusively learn the smooth, bounded manifold of the ordered phase.
+
 ### 2. Scale Invariance is a Local Property
 
 #### 2.1 The Ontometric Resolution: Scale Invariance and the Possible Prediction
@@ -382,7 +386,17 @@ Relational Calculus, therefore, is not an optimization technique that makes exis
 
 #### DEMO Script 1: Phase-Transition Blindness
 
-*This script demonstrates the predictive singularity at a sharp phase transition. A small neural network is trained to predict magnetization from temperature, using only sub-critical data ($T < T_c$). Two models are compared: an eterometric model that ingests absolute temperature in Kelvin, and an ontometric model that ingests the dimensionless reduced temperature $t = (T_c - T)/T_c$ and predicts the magnetization ratio. On super-critical test data ($T > T_c$), the eterometric model extrapolates blindly, producing physically impossible non-zero magnetization with a mean absolute error of 1.11. The ontometric model’s raw output yields a lower but still non-zero MAE of 0.43—an artifact of the ReLU activation, which zeroes all negative $t$ inputs and forces the network to output a constant. This constant is not a failure of ontometry; it is the natural consequence of the network having no information about the disordered phase. Ontometry supplies that information directly through the North Star $T_c$: when $t < 0$, the magnetization ratio must be exactly zero. Applying this physical rule corrects the ontometric prediction to an MAE of 0.0000, without additional training, without new data, and without any heuristic threshold. The eterometric model, lacking any anchor for $T_c$, can never be corrected in this way and remains catastrophically blind to the phase transition.*
+*This script demonstrates the predictive singularity at a sharp phase transition. A small neural network is trained to predict magnetization from temperature, using only sub-critical data ($T < T_c$). Two models are compared: an eterometric model that ingests absolute temperature in Kelvin, and an ontometric model that ingests the dimensionless reduced temperature $t = (T_c - T)/T_c$ and predicts the magnetization ratio.
+
+On super-critical test data ($T > T_c$), the behavioral contrast is stark:
+
+| Model | Test MAE | Extrapolation Behavior |
+| :--- | :--- | :--- |
+| **Eterometric** | 1.1062 | Extrapolates blindly; predicts impossible non-zero values. |
+| **Ontometric (Raw)** | 0.4259 | Bounded by ReLU; outputs a constant, ignorant of phase change. |
+| **Ontometric (Corrected)** | **0.0000** | Perfect zero-shot boundary recognition via the North Star ($T_c$). |
+
+The constant output of the raw ontometric model is not a failure; it is the natural consequence of the network having no information about the disordered phase. Ontometry supplies that information directly: when $t < 0$, the magnetization ratio must be exactly zero. The eterometric model, lacking any anchor for $T_c$, can never be corrected in this way.*
 
 ```python
 import numpy as np
@@ -451,20 +465,27 @@ plt.show()
 ```
 
 ```text
-/tmp/ipykernel_451/2289449067.py:11: RuntimeWarning: invalid value encountered in power
-  return np.where(T <= Tc, (1 - T/Tc)**beta, 0.0)
-/usr/local/lib/python3.12/dist-packages/keras/src/layers/core/dense.py:106: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
-  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+
 Eterometric MAE         : 1.1062
 Ontometric (raw) MAE    : 0.4259
 Ontometric (corrected) MAE: 0.0000
+
 ```
 
 ---
 
 #### DEMO Script 2: Scale Invariance via Zero-Shot Extrapolation
 
-*This script validates the scale invariance of ontometric models. Two small neural networks are trained to predict the range of a projectile, using training data from a low-velocity regime (10–50 m/s). The eterometric model receives raw velocity and angle; the ontometric model receives only the angle and predicts a dimensionless range ratio, which is then multiplied by the physical capacity (v²/g) at inference. Both models are tested on a high-velocity regime (100–200 m/s), completely outside the training range. The eterometric model fails catastrophically, with an MAE exceeding 1000 m on test ranges of ~1000–4000 m—an error that grows with the square of the velocity gap, directly manifesting the $O(D^2)$ overhead. The ontometric model, having never seen velocity, produces an MAE of approximately 50 m, a 20-fold reduction. This residual error is purely the approximation error of a small network learning the smooth function $\sin(2\theta)$ from limited angle data; it does not depend on the velocity scale and would apply equally at any regime. For conceptual validation, this small, scale-invariant residual is already conclusive. Adding more neurons, a periodic feature engineering, or a longer training schedule would shrink it arbitrarily close to zero, but the fundamental result is already clear: ontometric predictions are independent of the physical scale, while eterometric predictions degrade proportionally to the mismatch between the training and test scale ranges.*
+*This script validates the scale invariance of ontometric models. Two small neural networks are trained to predict the range of a projectile, using training data from a low-velocity regime (10–50 m/s). The eterometric model receives raw velocity and angle; the ontometric model receives only the angle and predicts a dimensionless range ratio, which is then multiplied by the physical capacity (v²/g) at inference. Both models are tested on a high-velocity regime (100–200 m/s), completely outside the training range. 
+
+When tested on a high-velocity regime (100–200 m/s) completely outside the training range, the structural advantage of scale invariance becomes visible:
+
+| Model | Test MAE | Error Scaling |
+| :--- | :--- | :--- |
+| **Eterometric** | 1044.77 m | Fails catastrophically; error explodes with the $O(D^2)$ mismatch. |
+| **Ontometric** | **50.52 m** | 20-fold reduction; independent of scale. |
+
+The ontometric model's residual error (~50 m) is purely the approximation error of a small network learning the smooth function $\sin(2\theta)$ from limited angle data. It does not depend on the velocity scale. Adding more neurons or training time would shrink this arbitrarily close to zero, but the fundamental result is already clear: ontometric predictions are immune to physical scale, while eterometric predictions degrade proportionally to the mismatch between training and test scales.*
 
 ```python
 import numpy as np
@@ -540,19 +561,20 @@ print(f"Ontometric   MAE on unseen high-velocity data: {error_onto:.2f} m")
 ```
 
 ```text
-/usr/local/lib/python3.12/dist-packages/keras/src/layers/core/dense.py:106: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
-  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+
 Eterometric MAE on unseen high-velocity data: 1044.77 m
 Ontometric   MAE on unseen high-velocity data: 50.52 m
+
 ```
+---
 
-
-### Appendix: Reproducibility
+## Reproducibility
 All code, including the ML validation experiments and the dimensional-tax simulation, will soon be available in the companion repository:
 [https://github.com/Relational-Calculus-Foundation/Relational_Loss_ML](https://github.com/Relational-Calculus-Foundation/Relational_Loss_ML)
 
 A single executable notebook (`overhead_law_and_simulation.ipynb`) will reproduce every figure and table in this paper.
 
+---
 
 ## APPENDIX A: Relational Calculus Deployment Guide
 
@@ -564,7 +586,6 @@ The draft introduces two distinct layers:
 
 The loss function (`RelationalMSELoss`, `RelationalCrossEntropyLoss`) is only the interface. The real power emerges when you obey the architectural rules.
 
----
 
 ### Common pitfalls (and how they mislead)
 
