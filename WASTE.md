@@ -1,6 +1,9 @@
 # A Unified Theory of Computational Waste
 ## A High-Level Draft of Theory and Validation
-**Author:** [Massimiliano Concas]
+
+**Author:** Massimiliano Concas – Ciber-Fabbrica Research  
+**Date:** May 30, 2026
+**Version** 2.0
 **Repository:** [https://github.com/Relational-Calculus-Foundation/Relational_Loss_ML](https://github.com/Relational-Calculus-Foundation/Relational_Loss_ML)
 **Zenodo Foundational Paper:** [https://zenodo.org/records/19757717](https://zenodo.org/records/19757717)
 
