@@ -1,4 +1,4 @@
-# 🌌 Dimensionless Deep Learning: The Relational Calculus Framework
+# 🌌 GREEN COMPUTE: The Relational Calculus Framework for Dimensionless Deep Learning
 
 **Train Bigger Models on Less Hardware. Escape the Absolute Scale Trap.**
 
