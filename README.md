@@ -19,28 +19,25 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0005--7878--636X-A6CE39?style=flat&logo=orcid&logoColor=white)](https://orcid.org/0009-0005-7878-636X)
 
-<div style="background-color:#ffdddd; border-left: 6px solid #f44336; padding: 12px; margin: 16px 0;">
-  <strong style="color:#f44336; font-size:1.2em;">🔴 HARD WARNING: EDUCATIONAL PURPOSE ONLY - contact us for real engineering</strong>
-</div>
-**HARD WARNING: EDUCATIONAL PURPOSE ONLY - contact us for real engineering**
+> [!CAUTION]
+> **HARD WARNING: EDUCATIONAL PURPOSE ONLY - contact us for real engineering**
 
 ---
 
-**📢 A Note to Our Community & Fellow Founders**
-
-We recently navigated a financing discussion that did not align with our values or principles. Despite our clear position—equity-only partnership, no debt, real "smart money" or nothing—the proposal we received diverged significantly from that framework. We terminated the discussion and walked away.
-
-In the coming days, we will publish a brief, fully anonymized write-up detailing the specific contractual red flags and structuring mechanisms we observed—focused entirely on patterns and terms, never on individuals or entities.
-
-Our silence regarding specific parties is not weakness. It is our commitment to focus on what matters: our technology, our team, and our open-source mission.
-
-We have moved on. We suggest you do the same.
+> [!IMPORTANT]
+> **📢 A Note to Our Community & Fellow Founders**
+>
+> We recently navigated a financing discussion that did not align with our values or principles. Despite our clear position—equity-only partnership, no debt, real "smart money" or nothing—the proposal we received diverged significantly from that framework. We terminated the discussion and walked away.
+>
+> In the coming days, we will publish a brief, fully anonymized write-up detailing the specific contractual red flags and structuring mechanisms we observed—focused entirely on patterns and terms, never on individuals or entities.
+>
+> Our silence regarding specific parties is not weakness. It is our commitment to focus on what matters: our technology, our team, and our open-source mission.
+>
+> We have moved on. We suggest you do the same.
 
 ---
 
 **Keywords:** `Scale-Invariant Loss`, `Zero-Shot Transfer`, `XGBoost`, `Tabular Data`, `Dimensionless Math`, `Machine Learning Optimization`, `PyTorch Custom Loss`, `Exploding Gradient Fix`, `VRAM Reduction`.
-
----
 
 ## ⚡ The Core Insight in One Sentence
 > *Replace absolute-value targets with dimensionless ratios anchored to the system's intrinsic maximum capacity. The loss landscape becomes perfectly spherical, training converges exponentially faster, and models generalize across scales without retraining.*
